@@ -1,4 +1,8 @@
-package main;
+package game;
+
+import card.Deck;
+import card.MoveCard;
+import card.PayBankCard;
 
 import java.io.IOException;
 import java.util.logging.*;
@@ -29,6 +33,12 @@ public class Main {
 
         logr.log(Level.SEVERE, "log1");
         logr.log(Level.INFO, "log2");
+
+        Deck deck = new Deck();
+        deck.addCard("mover", "I like to move it", new MoveCard());
+        deck.addCard("PayBank", "I paybank now :)", new PayBankCard());
+        System.out.println(deck.getCards(0).toString());
+        System.out.println(deck.getCards(1).toString());
 
     }
 
