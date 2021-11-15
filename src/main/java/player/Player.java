@@ -1,4 +1,6 @@
 package player;
+import gui_fields.GUI_Player;
+
 //TODO make class
 // - create private attribute 'fieldPosition' of type int
 // - create private final attribute 'GUIPlayer' of type GUI_Player
@@ -10,4 +12,31 @@ package player;
 // - craete other appropriate get and set methods as well as a custom toString method.
 
 public class Player {
+
+    private int fieldPosition;
+
+    private final GUI_Player gui_Player;
+
+    private final String name;
+
+    public Player(String name, GUI_Player gui_Player) {
+        this.name = name;
+        this.gui_Player = gui_Player;
+    }
+
+    public void setFieldPosition(int fieldPosition) {
+        this.fieldPosition = fieldPosition;
+    }
+
+    public int getFieldPosition() {
+        return fieldPosition;
+    }
+
+    public GUI_Player getGui_Player() {
+        return gui_Player;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
