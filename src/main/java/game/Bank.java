@@ -1,5 +1,9 @@
 package game;
+import gui_fields.*;
+import gui_main.GUI;
+import player.Player;
 import player.PlayerManager;
+
 
 import java.util.ArrayList;
 
@@ -15,21 +19,31 @@ import java.util.ArrayList;
 public class Bank {
 
     private final ArrayList bankAccount = new ArrayList();
-    private double balance;
+    GUI gui = new GUI();
+    private PlayerManager playerManager;
 
-    public void changePlayerBalance(double balance) {
-        this.balance = balance;
-        if (balance < 0) {
-            balance = 0;
-        }
+    public Bank(PlayerManager playerManager) {
+        this.playerManager = playerManager;
     }
 
-    public void buyField(PlayerManager playerManager) {
-
+    public void changeBalance(Player player, int ammount) {
+        player.getGui_Player().setBalance(ammount + player.getGui_Player().getBalance());
     }
 
-    //public void payRent(int id, player) {
-        // player.balance = balance - field_rent;
-    //}
+    public void buyField(Player player) {
+        GUI_Field field = gui.getFields()[player.getFieldPosition()];
+        GUI_Ownable ownable = (GUI_Ownable) field;
+        int pris = -Integer.parseInt(ownable.getRent());
+        changeBalance(player, pris);
+        ownable.setOwnerName(player.getName());
+        player.setPlayerAssets();
+    }
+
+    public void payRent(Player owner ,Player player) {
+        GUI_Field field = gui.getFields()[player.getFieldPosition()];
+        int leje = Integer.parseInt(((GUI_Ownable) field).getRent());
+        changeBalance(player, -leje);
+        changeBalance(owner, leje);
+    }
 }
 
