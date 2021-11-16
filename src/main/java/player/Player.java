@@ -1,6 +1,8 @@
 package player;
 import gui_fields.GUI_Player;
 
+import java.util.ArrayList;
+
 //TODO make class
 // - create private attribute 'fieldPosition' of type int
 // - create private final attribute 'GUIPlayer' of type GUI_Player
@@ -12,6 +14,8 @@ import gui_fields.GUI_Player;
 // - craete other appropriate get and set methods as well as a custom toString method.
 
 public class Player {
+
+    private ArrayList<Integer> playerAssets = new ArrayList<>();
 
     private int fieldPosition;
 
@@ -38,5 +42,13 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Integer> getPlayerAssets() {
+        return playerAssets;
+    }
+
+    public void setPlayerAssets() {
+        playerAssets.add(fieldPosition);
     }
 }
