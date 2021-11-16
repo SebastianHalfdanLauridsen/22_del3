@@ -5,6 +5,8 @@ import card.MoveCard;
 import card.PayBankCard;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.logging.*;
 
 public class Main {
@@ -39,6 +41,12 @@ public class Main {
         deck.addCard("PayBank", "I paybank now :)", new PayBankCard());
         System.out.println(deck.getCards(0).toString());
         System.out.println(deck.getCards(1).toString());
+
+
+
+        Locale locale = new Locale("dk");
+        ResourceBundle bundle = ResourceBundle.getBundle("test", locale);
+        System.out.println(bundle.getString("label1"));
 
     }
 
