@@ -1,5 +1,4 @@
 package player;
-import game.Bank;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
 
@@ -15,31 +14,29 @@ import java.util.ArrayList;
 
 public class PlayerManager {
 
-    private ArrayList<GUI_Player> childPlayers = new ArrayList();
+    private ArrayList<Player> childPlayers;
     private static int playerCount;
-    private static int id;
 
-    // do we really need this constructor?
-    public PlayerManager(int id) {
+
+    public PlayerManager() {
+        this.childPlayers = new ArrayList<>();
     }
 
-    public void createPlayer(String name, double Balance, GUI_Car car) {
-        GUI_Player player = new GUI_Player(name, balance, car);
+
+    public void createPlayer(String name, int balance, GUI_Car car) {
+        GUI_Player GuiPlayer = new GUI_Player(name, balance, car);
+        Player player = new Player(name, GuiPlayer);
         addPlayer(player);
     }
 
-    private void addPlayer(GUI_Player player) {
+    private void addPlayer(Player player) {
         childPlayers.add(player);
     }
 
-    public ArrayList<GUI_Player> getChildPlayers() {
-        return childPlayers;
+    public Player getChildPlayers(int index) {
+        return childPlayers.get(index);
     }
 
-    public void setChildPlayers(ArrayList<GUI_Player> childPlayers) {
-        this.childPlayers = childPlayers;
-
-    }
     public static int getPlayerCount() {
         return playerCount;
     }
