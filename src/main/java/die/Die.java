@@ -38,7 +38,7 @@ public class Die {
     }
     //TODO maybe protected?
     public void roll() {
-        face = ThreadLocalRandom.current().nextInt(1,sides);
+        face = ThreadLocalRandom.current().nextInt(1,sides + 1);
     }
     //TODO maybe protected?
     //getters
