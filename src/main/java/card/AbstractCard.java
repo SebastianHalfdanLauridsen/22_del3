@@ -1,22 +1,25 @@
 package card;
 
+import player.Player;
+
 public abstract class AbstractCard {
     private String name;
     private String description;
 
-    public void setName(String name) {
+    public AbstractCard setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public void setDescription(String description) {
+    public AbstractCard setDescription(String description) {
         this.description = description;
+        return this;
     }
 
-    @Override
-    public String toString() {
-        return "Chancekort: " + name + "\n"
-                + description;
+    public String getDescription() {
+        return description;
     }
+
+    public abstract void action(Player player);
+
 }
-
-
