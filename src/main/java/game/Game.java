@@ -34,9 +34,9 @@ public class Game {
         this.cars = new Cars();
         this.playerManager = new PlayerManager();
 
-        //this.gui = new GUI(fields.getFields(), new Color(229, 239, 222));
+        this.gui = new GUI(fields.getFields(), new Color(229, 239, 222));
         this.board = new Board(gui);
-        //this.bank = new Bank(playerManager, board, fields);
+        this.bank = new Bank(playerManager, board, fields);
 
         this.deck = new Deck();
 
