@@ -10,15 +10,6 @@ import gui_fields.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//TODO make class
-// - Create a private ArrayList that contains nothing.
-// - Create constructor
-// - Create public method to change a players balance through PlayerManager (parse as parameter)
-// - Create public method that lets a player buy a field with parameters PlayerManager 'playerManager'
-// - Create public method that lets a player pay rent. (Maybe GUI can do?)
-// - create public method that adds a player to a given index (field)
-//      in the ArrayList which makes the player take ownership of that field
-// - Create appropriate get and set methods as well as a custom toString method
 public class Bank {
 
     private final PlayerManager playerManager;
@@ -44,10 +35,16 @@ public class Bank {
 
     public void payFieldRent(Player currentPlayer, Player fieldOwner, GUI_Street field) {
         int fieldRent = getFieldRent( field);
-        //TODO KÆVIN FIKS TOO MANY MONEY IF NO MONEY
-        // - NO PAY WHEN I GO INTO MINUS AND LOSE OHNO
-        changeBalance(currentPlayer, -fieldRent);
-        changeBalance(fieldOwner, fieldRent);
+        int playerBalance = player.getGUIPlayer().getBalance();
+        //Checks if the field rent would make the balance go below 0
+        if (playerBalance < fieldRent){
+            int diff = fieldRent - playerBalance;
+            changeBalance(player, -diff);
+            changeBalance(fieldOwner, diff);
+        } else {
+            changeBalance(player, -fieldRent);
+            changeBalance(fieldOwner, fieldRent);
+        }
     }
 
     private boolean hasLost(Player player) {
@@ -134,10 +131,10 @@ public class Bank {
     }
 
     /**
-     * converts the fields subtext to only numbers and returns the price of the field
-     * @param field
-     * @return
-     */ //TODO numberformat exc
+     * Converts the fields' subtext to only numbers and returns the price of the field
+     * @param field the field whose subtext needs to be converted
+     * @return the subtext in only numbers
+     */ //TODO number format exc
     private int getFieldRent(GUI_Street field) throws NumberFormatException {
         String fieldPrice = field.getRent();
         //thanks to https://attacomsian.com/blog/java-extract-digits-from-string
