@@ -16,6 +16,10 @@ public abstract class AbstractCard {
         return this;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getDescription() {
         return description;
     }
