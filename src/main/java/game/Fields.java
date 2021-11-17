@@ -12,9 +12,12 @@ public class Fields {
     public Fields() {
         createFields();
     }
-    //TODO needs resourcebundle language overhaul
+
+    /**
+     *
+     *///TODO needs resourcebundle language overhaul
     private void createFields() {
-        fields = new GUI_Field[]{
+        fields = new GUI_Field[] {
                 //START MOTTA M2 NÅR DU PASSERER
                 new GUI_Start(Main.getLanguage().getString("startTitle"),
                         "<-------",
