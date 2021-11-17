@@ -11,6 +11,7 @@ import java.util.logging.*;
 
 public class Main {
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private static ResourceBundle language;
 
     private static void setupLogger() {
         LogManager.getLogManager().reset();
@@ -33,21 +34,16 @@ public class Main {
     public static void main(String[] args) {
         Main.setupLogger();
 
-        logr.log(Level.SEVERE, "log1");
-        logr.log(Level.INFO, "log2");
+        Locale locale = new Locale("no");
+        language = ResourceBundle.getBundle("language", locale);
+    }
 
-        Deck deck = new Deck();
-        deck.addCard("mover", "I like to move it", new MoveCard());
-        deck.addCard("PayBank", "I paybank now :)", new PayBankCard());
-        System.out.println(deck.getCards(0).toString());
-        System.out.println(deck.getCards(1).toString());
+    public static Logger getLogr() {
+        return logr;
+    }
 
-
-
-        Locale locale = new Locale("dk");
-        ResourceBundle bundle = ResourceBundle.getBundle("test", locale);
-        System.out.println(bundle.getString("label1"));
-
+    public static ResourceBundle getLanguage() {
+        return language;
     }
 
 }
