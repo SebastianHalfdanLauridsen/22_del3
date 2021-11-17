@@ -58,8 +58,6 @@ public class DeckTest {
 
     @Test
     public void cardCountTest() {
-        Deck deck = new Deck();
-
         cardCountTestAssert(0, new Deck());
         cardCountTestAssert(1, new Deck());
         cardCountTestAssert(10000000, new Deck());
