@@ -5,13 +5,10 @@ import game.Fields;
 import game.Main;
 import gui_fields.*;
 
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Bank {
-
     private final PlayerManager playerManager;
     private final Board board;
     private final Fields fields;
@@ -24,16 +21,27 @@ public class Bank {
         this.fields = fields;
     }
 
-    public void buyField(int fieldIndex, Player player) throws NumberFormatException {
+    /**
+     * Lets the player buy the field for the amount of rent from the given field
+     * @param fieldIndex the int index of the field to be bought by the player
+     * @param player the player who buys the field
+     */
+    public void buyField(int fieldIndex, Player player) {
         GUI_Field field = fields.getFields()[fieldIndex];
-        int fieldPrice = -( getFieldRent((GUI_Street) field));
+        int fieldPrice = getFieldRent((GUI_Street) field);
         changeBalance(player, fieldPrice);
         player.addOwnedField(fieldIndex);
         board.displayBoughtField(player, field);
         board.changeFieldDescription(Main.getLanguage().getString("ownerDescription") + player.getGUIPlayer().getName(), fieldIndex);
     }
 
-    public void payFieldRent(Player currentPlayer, Player fieldOwner, GUI_Street field) {
+    /**
+     * Lets the player pay the fieldOwner the amount of rent from the fieldOwners field
+     * @param player the payee
+     * @param fieldOwner the owner of the field
+     * @param field the field
+     */
+    public void payFieldRent(Player player, Player fieldOwner, GUI_Street field) {
         int fieldRent = getFieldRent( field);
         int playerBalance = player.getGUIPlayer().getBalance();
         //Checks if the field rent would make the balance go below 0
@@ -57,12 +65,13 @@ public class Bank {
     }
 
     /**
-     * //TODO
+     * Determines the winning player in regard to how much money and property value each player has
+     *   if two or more players have the same amount of total value to their name a die will be rolled
+     *   and a winning player will be determined by chance
      */
     private void determineWinningPlayer() {
-        //"sell" all owned fields to bank
         ArrayList<Integer> balance = new ArrayList<>();
-
+        //"sell" all owned fields to bank
         for(int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
             Player player = playerManager.getPlayers(playerIndex);
             for(int fieldIndex = 0; fieldIndex < player.getOwnedFields().size(); fieldIndex++) {
@@ -74,15 +83,16 @@ public class Bank {
             balance.add(playerBalance);
         }
         Integer maxVal = Collections.max(balance);
-        //if more than one player has maxVal
-        int numberOfMaxValues = Collections.frequency(balance,maxVal);
 
+        int numberOfMaxValues = Collections.frequency(balance,maxVal);
         int winningPlayerIndex = -1;
+
+        //TODO make visual repr in GUI
         if (numberOfMaxValues > 1) {
             Die die = new Die();
             while (winningPlayerIndex == -1){
+                //rolls the die for each eligible player to determine the winner
                 for (int playerIndex = 0; playerIndex < balance.size(); playerIndex++) {
-                    //rolls the die to determine winner
                     die.roll();
                     if (balance.indexOf(playerIndex) == maxVal && die.getFace() == 6) {
                         winningPlayerIndex = playerIndex;
@@ -90,17 +100,15 @@ public class Bank {
                 }
             }
         } else {
-            //Finds index for that value
             winningPlayerIndex = balance.indexOf(maxVal);
         }
-        //sets winning player
         this.winningPlayer = playerManager.getPlayers(winningPlayerIndex);
     }
 
     /**
-     * //TODO
-     * @param player
-     * @param change
+     * Changes the balance of the player
+     * @param player the player object whose balance will be changed
+     * @param change the change in balance
      */
     public void changeBalance(Player player, int change) {
         int currentBalance = player.getGUIPlayer().getBalance();
@@ -113,9 +121,9 @@ public class Bank {
     }
 
     /**
-     * //TODO
-     * @param fieldIndex
-     * @return
+     * Determines if any player owns a given field and returns that player
+     * @param fieldIndex the field that can be owned
+     * @return the player who may own the field, otherwise null
      */
     public Player isOwned(int fieldIndex) {
         for(int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
