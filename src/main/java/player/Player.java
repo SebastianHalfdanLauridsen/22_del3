@@ -1,54 +1,42 @@
 package player;
+
 import gui_fields.GUI_Player;
+import game.Game;
 
 import java.util.ArrayList;
-
-//TODO make class
-// - create private attribute 'fieldPosition' of type int
-// - create private final attribute 'GUIPlayer' of type GUI_Player
-// - create private final attribute 'name' of type String
-// - create public constructor that takes parameters String 'name' and GUI_Player 'player'
-//      and sets the players private attributes equal to the parameters
-// - create public method setField that takes the parameter int 'fieldPosition'
-//      and sets the fieldPosition of the player (remember to check if it is a valid parameter).
-// - craete other appropriate get and set methods as well as a custom toString method.
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Player {
-
-    private ArrayList<Integer> playerAssets = new ArrayList<>();
+    private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private int fieldPosition;
+    private final GUI_Player GUIPlayer;
+    private final ArrayList<Integer> ownedFields;
 
-    private final GUI_Player gui_Player;
-
-    private final String name;
-
-    public Player(String name, GUI_Player gui_Player) {
-        this.name = name;
-        this.gui_Player = gui_Player;
+    public Player(int startField, GUI_Player GUIPlayer) {
+        this.fieldPosition = startField;
+        this.GUIPlayer = GUIPlayer;
+        this.ownedFields = new ArrayList<>();
     }
-
-    public void setFieldPosition(int fieldPosition) {
-        this.fieldPosition = fieldPosition;
+    protected void addOwnedField(int fieldIndex) {
+        ownedFields.add(fieldIndex);
     }
-
+    protected ArrayList<Integer> getOwnedFields() {
+        return ownedFields;
+    }
     public int getFieldPosition() {
         return fieldPosition;
     }
-
-    public GUI_Player getGui_Player() {
-        return gui_Player;
+    public GUI_Player getGUIPlayer() {
+        return GUIPlayer;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public ArrayList<Integer> getPlayerAssets() {
-        return playerAssets;
-    }
-
-    public void setPlayerAssets() {
-        playerAssets.add(fieldPosition);
+    public void setFieldPosition(int fieldPosition) {
+        if(fieldPosition < 0 || fieldPosition > Game.MAX_FIELDS) {
+            logr.log(Level.INFO, "The player's field position cannot be less than 0 " +
+                    "or more than the total amount of fields on the board");
+            return;
+        }
+        this.fieldPosition = fieldPosition;
     }
 }
