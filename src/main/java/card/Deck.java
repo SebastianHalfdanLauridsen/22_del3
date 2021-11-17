@@ -27,4 +27,8 @@ public class Deck {
     public void shuffleCards() {
         Collections.shuffle(cards);
     }
+
+    public LinkedList<AbstractCard> getCards() {
+        return cards;
+    }
 }
