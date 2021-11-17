@@ -9,16 +9,14 @@ public class Die {
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private int face;
-    private final int sides;
+    private int sides = 0;
 
     //TODO maybe protected?
     public Die(int face, int sides) {
         if(face < 1 || face > sides) {
             logr.log(Level.INFO, "The die's face value cannot be less than 1 " +
                     "or more than the amount of sides.");
-        }
-        if(sides < 0) {
-            logr.log(Level.INFO, "The die cannot have less than 1 side.");
+            return;
         }
         this.face = face;
         this.sides = sides;
@@ -27,6 +25,7 @@ public class Die {
     public Die(int sides) {
         if(sides < 1) {
             logr.log(Level.INFO, "The die cannot have less than 1 side.");
+            return;
         }
         this.sides = sides;
         roll();
