@@ -1,14 +1,10 @@
 package player;
 
-import card.Deck;
-import card.MoveCard;
 import gui_fields.GUI_Car;
-import gui_fields.GUI_Player;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class PlayerManagerTest {
-
     @Test
     public void createPlayerTest() {
         PlayerManager playerManager = new PlayerManager();

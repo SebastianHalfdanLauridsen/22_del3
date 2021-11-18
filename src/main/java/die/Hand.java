@@ -21,13 +21,11 @@ public class Hand {
             this.dice.add(new Die(sides));
         }
     }
-
     public void roll() {
         for(int i = 0; i < diesCount; i++) {
             dice.get(i).roll();
         }
     }
-
     public int sum() {
         int sum = 0;
         for (int i = 0; i < diesCount; i++) {
