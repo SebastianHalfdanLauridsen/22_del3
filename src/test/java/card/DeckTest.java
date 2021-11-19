@@ -7,8 +7,18 @@ import java.util.ArrayList;
 
 public class DeckTest {
 
+
+    @Test
+    public void runTest() {
+        addCardTest();
+        drawCardTest();
+        cardCountTest();
+        shuffleCardsTest();
+    }
+
     @Test
     public void addCardTest() {
+        Main.setLanguage();
         Deck deck = new Deck();
 
         //variables
@@ -42,6 +52,7 @@ public class DeckTest {
 
     @Test
     public void drawCardTest() {
+        Main.setLanguage();
         Deck deck = new Deck();
 
         //add cards to deck
@@ -58,6 +69,8 @@ public class DeckTest {
 
     @Test
     public void cardCountTest() {
+        Main.setLanguage();
+
         cardCountTestAssert(0, new Deck());
         cardCountTestAssert(1, new Deck());
         cardCountTestAssert(10000000, new Deck());
@@ -65,7 +78,7 @@ public class DeckTest {
 
     private void cardCountTestAssert(int amountOfCards, Deck deck) {
         for (int i = 0; i < amountOfCards; i++) {
-            deck.addCard("card", "description", new MoveCard());
+            deck.addCard("card", "description", new MoveCard(23));
         }
         Assert.assertEquals(amountOfCards, deck.cardCount);
     }
