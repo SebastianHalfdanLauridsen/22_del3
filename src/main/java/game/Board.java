@@ -8,6 +8,7 @@ import player.Player;
 import player.PlayerManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 //TODO javacock
 /**
@@ -138,9 +139,18 @@ public class Board {
     public void changeFieldDescription(String description, int fieldIndex) {
         gui.getFields()[fieldIndex].setDescription(description);
     }
-    public String getPlayerNames(int index) {
+    public String getPlayerName(int index) {
         return playerNames.get(index);
     }
+
+    public ArrayList<String> getPlayerNames() {
+        return playerNames;
+    }
+
+    public void setPlayerNames(String[] names) {
+        Collections.addAll(playerNames, names);
+    }
+
     public int getUserCount() {
         return userCount;
     }
