@@ -41,7 +41,7 @@ public class Game {
         this.deck = new Deck();
 
         playerSetup();
-        board.displayScoreboard(gui, playerManager);
+        board.displayScoreboard(playerManager);
     }
 
 
@@ -93,7 +93,7 @@ public class Game {
         board.displayStartUI();
         //create players
         for(int i = 0; i < board.getUserCount(); i++) {
-            String nextPlayerName = board.getPlayerNames(i);
+            String nextPlayerName = board.getPlayerName(i);
             playerManager.createPlayer(nextPlayerName,35, cars.getCars()[i]);
         }
         //display cars
