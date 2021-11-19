@@ -34,12 +34,16 @@ public class Main {
     public static void main(String[] args) {
         Main.setupLogger();
 
-        Locale locale = new Locale("no");
-        language = ResourceBundle.getBundle("language", locale);
+        setLanguage();
     }
 
     public static Logger getLogr() {
         return logr;
+    }
+
+    public static void setLanguage(){
+        Locale locale = new Locale("no");
+        language = ResourceBundle.getBundle("language", locale);
     }
 
     public static ResourceBundle getLanguage() {
