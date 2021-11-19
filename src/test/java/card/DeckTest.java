@@ -38,9 +38,12 @@ public class DeckTest {
         String desc3 = "description3";
 
         //add cards to deck
-        deck.addCard(name1, desc1, new MoveCard());
-        deck.addCard(name2, desc2, new PayBankCard());
-        deck.addCard(name3, desc3, new MoveMaxFiveCard());
+        GUI gui = new GUI();
+        Bank bank = new Bank(new PlayerManager(), new Board(gui), new Fields());
+
+        deck.addCard(name1, desc1, new MoveCard(23));
+        deck.addCard(name2, desc2, new PayBankCard(2, bank));
+        deck.addCard(name3, desc3, new MoveMaxFiveCard(gui));
 
         //test
         AbstractCard card = deck.drawCard();
@@ -61,10 +64,13 @@ public class DeckTest {
         Main.setLanguage();
         Deck deck = new Deck();
 
+        GUI gui = new GUI();
+        Bank bank = new Bank(new PlayerManager(), new Board(gui), new Fields());
+
         //add cards to deck
-        deck.addCard("card", "description", new MoveCard());
-        deck.addCard("card", "description", new PayBankCard());
-        deck.addCard("card", "description", new MoveMaxFiveCard());
+        deck.addCard("card", "description", new MoveCard(23));
+        deck.addCard("card", "description", new PayBankCard(2, bank));
+        deck.addCard("card", "description", new MoveMaxFiveCard(gui));
 
         for (int i = 0; i < deck.cardCount; i++) {
             AbstractCard card = deck.drawCard();
@@ -91,13 +97,15 @@ public class DeckTest {
 
     @Test
     public void shuffleCardsTest() {
+        Main.setLanguage();
+
         int deckSize = 10000000;
         int alike = 0;
 
         Deck deck = new Deck();
 
         for(int i = 0; i < deckSize; i++) {
-            deck.addCard("","",new MoveCard());
+            deck.addCard("","",new MoveCard(23));
         }
         final ArrayList<AbstractCard> prevCards = new ArrayList<>(deck.getCards());
 
