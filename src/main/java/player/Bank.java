@@ -73,7 +73,11 @@ public class Bank {
     private void determineWinningPlayer() {
         ArrayList<Integer> balance = new ArrayList<>();
         //"sell" all owned fields to bank
-        for(int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
+        for (int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
+            //the losing player may not sell their fields. THEY ARE LOSERS HAHAHAHAHAHA
+            if(hasLost(playerManager.getPlayers(playerIndex))) {
+                continue;
+            }
             Player player = playerManager.getPlayers(playerIndex);
             for(int fieldIndex = 0; fieldIndex < player.getOwnedFields().size(); fieldIndex++) {
                 GUI_Street streetField = (GUI_Street) fields.getFields()[player.getOwnedFields().get(fieldIndex)];
