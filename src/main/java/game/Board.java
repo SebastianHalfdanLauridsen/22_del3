@@ -67,6 +67,8 @@ public class Board {
             playerNames.remove(currentUser);
             receiveUserInput(currentUser);
         }
+        //remove all blank entries
+        playerNames.removeIf(String::isBlank);
     }
 
     /**
