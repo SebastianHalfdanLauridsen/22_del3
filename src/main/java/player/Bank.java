@@ -131,9 +131,9 @@ public class Bank {
      * @return the player who may own the field, otherwise null
      */
     public Player isOwned(int fieldIndex) {
-        for(int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
+        for (int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
             Player player = playerManager.getPlayers(playerIndex);
-            for(int j = 0; j < player.getOwnedFields().size(); j++) {
+            for (int j = 0; j < player.getOwnedFields().size(); j++) {
                 int ownedFieldIndex = player.getOwnedFields().get(j);
                 if (ownedFieldIndex == fieldIndex) {
                     return playerManager.getPlayers(playerIndex);
