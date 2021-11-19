@@ -75,7 +75,7 @@ public class Board {
     /**
      * Displays the scoreboard on the GUI
      */
-    public void displayScoreboard(GUI gui, PlayerManager playerManager) {
+    public void displayScoreboard(PlayerManager playerManager) {
         for (int i = 0; i < playerManager.getPlayerCount(); i++) {
             gui.addPlayer( playerManager.getPlayers(i).getGUIPlayer() );
         }
