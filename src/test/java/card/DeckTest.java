@@ -1,7 +1,13 @@
 package card;
 
+import game.Board;
+import game.Fields;
+import game.Main;
+import gui_main.GUI;
 import org.junit.Test;
 import org.junit.Assert;
+import player.Bank;
+import player.PlayerManager;
 
 import java.util.ArrayList;
 
