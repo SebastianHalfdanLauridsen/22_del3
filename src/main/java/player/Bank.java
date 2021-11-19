@@ -29,7 +29,8 @@ public class Bank {
     public void buyField(int fieldIndex, Player player) {
         GUI_Field field = fields.getFields()[fieldIndex];
         int fieldPrice = getFieldRent((GUI_Street) field);
-        changeBalance(player, fieldPrice);
+
+        changeBalance(player, -fieldPrice);
         player.addOwnedField(fieldIndex);
         board.displayBoughtField(player, field);
         board.changeFieldDescription(Main.getLanguage().getString("ownerDescription") + player.getGUIPlayer().getName(), fieldIndex);
@@ -59,6 +60,7 @@ public class Bank {
         int playerBalance = player.getGUIPlayer().getBalance();
         if(playerBalance <= 0) {
             player.getGUIPlayer().setBalance(0);
+
             return true;
         }
         return false;
@@ -87,7 +89,7 @@ public class Bank {
         int numberOfMaxValues = Collections.frequency(balance,maxVal);
         int winningPlayerIndex = -1;
 
-        //TODO make visual repr in GUI
+        //TODO maybe make visual repr in GUI
         if (numberOfMaxValues > 1) {
             Die die = new Die();
             while (winningPlayerIndex == -1){
