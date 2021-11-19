@@ -46,10 +46,9 @@ public class Bank {
         int fieldRent = getFieldRent( field);
         int playerBalance = player.getGUIPlayer().getBalance();
         //Checks if the field rent would make the balance go below 0
-        if (playerBalance < fieldRent){
-            int diff = fieldRent - playerBalance;
-            changeBalance(player, -diff);
-            changeBalance(fieldOwner, diff);
+        if (playerBalance < fieldRent) {
+            changeBalance(player, -playerBalance);
+            changeBalance(fieldOwner, playerBalance);
         } else {
             changeBalance(player, -fieldRent);
             changeBalance(fieldOwner, fieldRent);
