@@ -113,21 +113,16 @@ public class Game {
 
         sleep();
         gui.showMessage(currentPlayer.getGUIPlayer().getName() + Main.getLanguage().getString("rollMessage"));
-        hand.roll();
-
-        int dieFace = hand.getDice().get(0).getFace();
-        int diceSum = hand.sum();
+        int diceSum = hand.roll();
 
         //select field, % in case currentFieldIndex + diceSum is more than MAX_FIELDS
         int nextFieldIndex = (currentFieldIndex + diceSum) % Game.MAX_FIELDS;
 
-        board.displayDie(gui, dieFace);
+        board.displayDie(gui, diceSum);
 
         board.displayMovingPlayer(currentPlayer.getGUIPlayer(), diceSum, currentFieldIndex);
-        movePlayer(currentPlayer, newFieldIndex);
-        newFieldIndex = getRealNewIndex(currentFieldIndex, diceSum);
-
-        fieldAction(currentPlayer, newFieldIndex);
+        movePlayer(currentPlayer, nextFieldIndex);
+        fieldAction(currentPlayer, nextFieldIndex);
     }
 
     /**
@@ -194,18 +189,11 @@ public class Game {
             case "GUI_Chance" -> {
                 GUIChanceAction(player);
             }
-            case "GUI_Jail" -> {
-                System.out.println("haha JÆEL");
-            }
             case "GUI_Tax" -> {
                 System.out.println(player.getGUIPlayer().getName() + " went to jail");
                 Game.sleep();
                 GUIGoToJailAction(player);
             }
-            case "GUI_Start" -> {
-                System.out.println("start field!");
-            }
-            default -> System.out.println("what");
         }
     }
 
@@ -220,14 +208,6 @@ public class Game {
             player.setFieldPosition(fieldIndex % MAX_FIELDS);
         } else {
             player.setFieldPosition(fieldIndex);
-        }
-    }
-
-    public int getRealNewIndex(int currentFieldIndex, int moves) {
-        if ((currentFieldIndex + moves) >= MAX_FIELDS) {
-            return (currentFieldIndex + moves) % MAX_FIELDS;
-        } else {
-            return (currentFieldIndex + moves);
         }
     }
 
@@ -246,23 +226,22 @@ public class Game {
     public Fields getFields() {
         return fields;
     }
-
     public Cars getCars() {
         return cars;
     }
-
     public Deck getDeck() {
         return deck;
     }
 
+    //thanks to https://github.com/diplomit-dtu/
     public static void sleep(){
         sleep(600);
     }
-    public static void sleep(long n){
+    public static void sleep(long ms){
         long time0 = System.currentTimeMillis();
         long time1 = System.currentTimeMillis();
 
-        while((time1 - time0) < n) {
+        while((time1 - time0) < ms) {
             time1 = System.currentTimeMillis();
         }
     }
