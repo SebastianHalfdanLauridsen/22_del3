@@ -19,7 +19,7 @@ public class Player {
     private boolean inJail = false;
     private boolean jailCard = false;
 
-    public Player(int startField, GUI_Player GUIPlayer) {
+    protected Player(int startField, GUI_Player GUIPlayer) {
         this.fieldPosition = startField;
         this.GUIPlayer = GUIPlayer;
         this.ownedFields = new ArrayList<>();
