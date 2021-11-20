@@ -36,6 +36,14 @@ public class Bank {
         board.changeFieldDescription(Main.getLanguage().getString("ownerDescription") + player.getGUIPlayer().getName(), fieldIndex);
     }
 
+    public void receiveField(int fieldIndex, Player player) {
+        GUI_Field field = fields.getFields()[fieldIndex];
+
+        player.addOwnedField(fieldIndex);
+        board.displayBoughtField(player, field);
+        board.changeFieldDescription(Main.getLanguage().getString("ownerDescription") + player.getGUIPlayer().getName(), fieldIndex);
+    }
+
     /**
      * Lets the player pay the fieldOwner the amount of rent from the fieldOwners field
      * @param player the payee
