@@ -141,7 +141,15 @@ public class AllCardsTest {
 
     @Test
     public void PayBankCardTest() {
+        setup();
 
+        playerManager.createPlayer("Bilen", 10, cars.getCars()[0]);
+
+        deck.addCard("name", "desc", new PayBankCard(2, bank));
+
+        deck.drawCard().action(playerManager.getPlayers(0));
+
+        Assert.assertEquals(8, playerManager.getPlayers(0).getGUIPlayer().getBalance());
     }
 
     private void setup(){
