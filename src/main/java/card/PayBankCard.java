@@ -10,12 +10,11 @@ import player.Player;
 
 public class PayBankCard extends AbstractCard{
     int payAmount;
-    private Bank bank;
+    private final Bank bank;
 
     public PayBankCard(int payAmount, Bank bank) {
         this.payAmount = payAmount;
         this.bank = bank;
-
     }
 
     public void action(Player player) {

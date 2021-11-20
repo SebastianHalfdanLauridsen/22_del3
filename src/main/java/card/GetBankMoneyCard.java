@@ -9,7 +9,7 @@ import player.Player;
 
 public class GetBankMoneyCard extends AbstractCard{
     int paymentAmount;
-    private Bank bank;
+    private final Bank bank;
 
 
     public GetBankMoneyCard(int paymentAmount, Bank bank) {

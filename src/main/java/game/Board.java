@@ -90,7 +90,7 @@ public class Board {
     }
 
     public void displayMovingPlayer(GUI_Player player, int moves, int currentFieldIndex){
-        for(int nextFieldIndex = currentFieldIndex; nextFieldIndex <= currentFieldIndex+moves; nextFieldIndex++) {
+        for (int nextFieldIndex = currentFieldIndex; nextFieldIndex <= currentFieldIndex+moves; nextFieldIndex++) {
             Game.sleep(400);
             //removes all images of 'player's car from all fields
             for (GUI_Field f : gui.getFields()) {
