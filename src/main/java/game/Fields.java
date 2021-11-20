@@ -108,6 +108,7 @@ public class Fields {
                         Main.getLanguage().getString("parkingTitleAndDescription"),
                         Main.getLanguage().getString("parkingSubText"),
                         Main.getLanguage().getString("parkingTitleAndDescription"),
+                        "",
                         new Color(229, 239,222),
                         Color.BLACK),
 
