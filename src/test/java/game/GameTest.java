@@ -1,7 +1,15 @@
 package game;
 
+import card.Deck;
+import card.GetBankMoneyCard;
+import gui_fields.GUI_Street;
+import gui_main.GUI;
 import org.junit.Assert;
 import org.junit.Test;
+import player.Bank;
+import player.Cars;
+import player.Player;
+import player.PlayerManager;
 
 
 public class GameTest {
@@ -26,8 +34,11 @@ public class GameTest {
     }
 
     @Test
-    public void firstTest() {
-        Assert.assertTrue(true);
+    public void GameConstructorTest() {
+        Main.setLanguage();
+
+        Game game = new Game();
+        Game.sleep(10000);
     }
 
 }
