@@ -22,7 +22,7 @@ public class MoveMaxFiveCard extends AbstractCard{
     }
 
     //Lets the player move 1 to 5 fields depending on the number input
-    public void action(Player player){ //TODO something is very wrong
+    public void action(Player player) {
         String chosenElement = gui.getUserSelection(
                 "Choose how many field you want to move!",
                 "1", "2", "3", "4", "5"
