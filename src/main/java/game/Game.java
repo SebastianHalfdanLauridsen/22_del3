@@ -118,8 +118,8 @@ public class Game {
         int dieFace = hand.getDice().get(0).getFace();
         int diceSum = hand.sum();
 
-        //select field
-        int newFieldIndex = currentFieldIndex + diceSum;//getNewFieldIndex(currentFieldIndex, diceSum);
+        //select field, % in case currentFieldIndex + diceSum is more than MAX_FIELDS
+        int nextFieldIndex = (currentFieldIndex + diceSum) % Game.MAX_FIELDS;
 
         board.displayDie(gui, dieFace);
 
