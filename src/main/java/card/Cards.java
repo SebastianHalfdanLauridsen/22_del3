@@ -1,17 +1,5 @@
 package card;
 
-import card.Deck;
-
-import card.GetBankMoneyCard;
-//import card.GetOutOfJailCard;
-//import card.GetPlayersMoneyCard;
-import card.MoveCard;
-import card.MoveFieldGetFreeCard;
-import card.MoveMaxFiveCard;
-import card.MoveOrDrawCard;
-//import card.PassPlayerMoveCard;
-import card.PayBankCard;
-
 import game.Board;
 import game.Game;
 import game.Main;
@@ -54,13 +42,13 @@ public class Cards {
                 Main.getLanguage().getString("cardDescription3"),
                 new GetBankMoneyCard(2,bank)
         );
-        //TODO
-        /*deck.addCard(Main.getLanguage().getString("cardName"),
+        //TODO DENIZ KOMM NUUUUUU
+        deck.addCard(Main.getLanguage().getString("cardName"),
                 Main.getLanguage().getString("cardDescription4"),
-                new GetAllPlayerMoneyCard(1, bank, playerManager)
-        );*/
+                new GetPlayersMoneyCard(1, bank, playerManager)
+        );
         //TODO language resourcebundle
-        /*deck.addCard("SJANSE",
+        deck.addCard("SJANSE",
                 "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
                 new MoveFieldGetFreeCard(10,11, gui, game, board, bank) //orange
         );
@@ -74,21 +62,21 @@ public class Cards {
         );
 
         deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
+                "FRI FELT! Flytt til et oransje eller grønt felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
                 new MoveFieldGetFreeCard(10,11, 19, 20, gui, game, board, bank) //orange and green
         );
         deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
+                "FRI FELT! Flytt til et lyserødt eller blåt felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
                 new MoveFieldGetFreeCard(7,8, 22, 23, gui, game, board, bank) //pink and darkblue
         );
         deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
+                "FRI FELT! Flytt til et lyseblått eller rødt felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
                 new MoveFieldGetFreeCard(4,5, 12, 13, gui, game, board, bank) //light blue and red
         );
         deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
+                "FRI FELT! Flytt til et brunt eller gult felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
                 new MoveFieldGetFreeCard(1,2, 16, 17, gui, game, board, bank) //brown and yellow
-        );*/
+        );
 
         //TODO language resourcebundle
         deck.addCard("SJANSE",
@@ -107,5 +95,8 @@ public class Cards {
                 new MoveCard(0, board, game) //start
         );
 
+        deck.addCard("SJANSE",
+                "Du løslades uden omkostninger. Behold dette kort, indtil du får brug for det.",
+                new GetOutOfJailCard());
     }
 }
