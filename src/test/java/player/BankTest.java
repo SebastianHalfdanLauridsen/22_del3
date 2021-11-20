@@ -5,6 +5,7 @@ import game.Fields;
 import game.Game;
 import game.Main;
 import gui_fields.GUI_Car;
+import gui_fields.GUI_Field;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
 import org.junit.Assert;
