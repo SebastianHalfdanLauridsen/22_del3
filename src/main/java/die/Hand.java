@@ -21,7 +21,8 @@ public class Hand {
             this.dice.add(new Die(sides));
         }
     }
-    public void roll() {
+
+    public int roll() {
         for(int i = 0; i < diesCount; i++) {
             dice.get(i).roll();
         }
