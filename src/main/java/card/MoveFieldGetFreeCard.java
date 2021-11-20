@@ -45,17 +45,10 @@ public class MoveFieldGetFreeCard extends AbstractCard {
             choice[i] = gui.getFields()[field[i]].getTitle();
         }
 
-        if (field.length == 2) {
-            chosenElement = gui.getUserSelection(
-                    "Choose which of the two free fields you wanna stay on!",
-                    choice //mayhaps
-            );
-        } else {
-            chosenElement = gui.getUserSelection(
-                    "Choose which of the two free fields you wanna stay on!",
-                    choice[0], choice[1], choice[2], choice[3]
-            );
-        }
+        chosenElement = gui.getUserSelection(
+                "Choose which of the two free fields you wanna stay on!",
+                choice
+        );
 
         int index = Arrays.asList(choice).indexOf(chosenElement);
         int chosenField = field[index];
