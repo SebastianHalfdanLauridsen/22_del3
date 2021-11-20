@@ -65,14 +65,10 @@ public class Game {
         }
     }
 
-    public void runGame(){
+    public void runGame() {
         cardSetup();
         sleep();
         hand = new Hand(1, 6);
-
-        int currentFieldPos = 0;
-        GUI_Field currentField = gui.getFields()[currentFieldPos];
-        GUI_Field newField = currentField;
 
         while( !(bank.playerHasWon()) ) {
             playRound();
@@ -180,7 +176,7 @@ public class Game {
     }
 
     public void movePlayer(Player player, int field) {
-        if (field >= MAX_FIELDS) {
+        if (field >= MAX_FIELDS || field == 0) {
             bank.changeBalance(player,CROSS_START_MONEY);
             player.setFieldPosition(field - MAX_FIELDS);
         } else {
