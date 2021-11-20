@@ -38,7 +38,8 @@ public class MoveOrDrawCard extends AbstractCard{
             int newPlayerPosition = moves + playerPosition;
             board.displayMovingPlayer(player.getGUIPlayer(), moves, playerPosition);
             game.movePlayer(player, newPlayerPosition);
-            game.GUIStreetAction(player, newPlayerPosition);
+            int realNewPlayerPosition = game.getRealNewIndex(playerPosition, moves);
+            game.fieldAction(player, realNewPlayerPosition);
         } else {
             game.GUIChanceAction(player);
         }
