@@ -29,9 +29,10 @@ public class MoveMaxFiveCard extends AbstractCard{
         );
 
         int numberInput = Integer.parseInt(chosenElement);
+        int fieldIndex = numberInput + player.getFieldPosition();
 
         board.displayMovingPlayer(player.getGUIPlayer(), numberInput, player.getFieldPosition());
-        game.movePlayer(player, numberInput);
-        game.fieldAction(player, player.getFieldPosition() + numberInput);
+        game.movePlayer(player, fieldIndex);
+        game.fieldAction(player, fieldIndex);
     }
 }
