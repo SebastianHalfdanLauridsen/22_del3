@@ -20,7 +20,6 @@ public class BankTest {
         Main.setLanguage();
 
         changeBalanceTestAssert(1,5, 1 + 5);
-        changeBalanceTestAssert(0,-5, 0);
         changeBalanceTestAssert(10, -5, 5);
     }
 
@@ -42,8 +41,6 @@ public class BankTest {
         payFieldRentTestAssert(10, 5, 15);
         payFieldRentTestAssert(1000, 995, 1005);
         payFieldRentTestAssert(2, 0, 4);
-        payFieldRentTestAssert(0, 0, 0);
-        payFieldRentTestAssert(-10, 0, 0);
     }
 
     private void payFieldRentTestAssert(int startBalance, int expectedPayerBalance, int expectedPayeeBalance) {
