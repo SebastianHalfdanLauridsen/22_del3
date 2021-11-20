@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class DeckTest {
 
-
     @Test
     public void runTest() {
         addCardTest();
@@ -39,11 +38,12 @@ public class DeckTest {
 
         //add cards to deck
         GUI gui = new GUI();
-        Bank bank = new Bank(new PlayerManager(), new Board(gui), new Fields());
-
-        deck.addCard(name1, desc1, new MoveCard(23));
+        Board board = new Board(gui);
+        Bank bank = new Bank(new PlayerManager(), board, new Fields());
+        //TODO
+        //deck.addCard(name1, desc1, new MoveCard(23, board, game));
         deck.addCard(name2, desc2, new PayBankCard(2, bank));
-        deck.addCard(name3, desc3, new MoveMaxFiveCard(gui));
+        deck.addCard(name3, desc3, new GetBankMoneyCard(2, bank));
 
         //test
         AbstractCard card = deck.drawCard();
@@ -68,9 +68,10 @@ public class DeckTest {
         Bank bank = new Bank(new PlayerManager(), new Board(gui), new Fields());
 
         //add cards to deck
-        deck.addCard("card", "description", new MoveCard(23));
+        //TODO
+        //deck.addCard("card", "description", new MoveCard(23));
         deck.addCard("card", "description", new PayBankCard(2, bank));
-        deck.addCard("card", "description", new MoveMaxFiveCard(gui));
+        deck.addCard("card", "description", new GetBankMoneyCard(2, bank));
 
         for (int i = 0; i < deck.cardCount; i++) {
             AbstractCard card = deck.drawCard();
@@ -89,8 +90,10 @@ public class DeckTest {
     }
 
     private void cardCountTestAssert(int amountOfCards, Deck deck) {
+        Bank bank = new Bank(new PlayerManager(), new Board(new GUI()), new Fields());
         for (int i = 0; i < amountOfCards; i++) {
-            deck.addCard("card", "description", new MoveCard(23));
+            deck.addCard("","",new PayBankCard(23, bank)
+            );
         }
         Assert.assertEquals(amountOfCards, deck.cardCount);
     }
@@ -103,9 +106,10 @@ public class DeckTest {
         int alike = 0;
 
         Deck deck = new Deck();
+        Bank bank = new Bank(new PlayerManager(), new Board(new GUI()), new Fields());
 
         for(int i = 0; i < deckSize; i++) {
-            deck.addCard("","",new MoveCard(23));
+            deck.addCard("","",new PayBankCard(23, bank));
         }
         final ArrayList<AbstractCard> prevCards = new ArrayList<>(deck.getCards());
 
