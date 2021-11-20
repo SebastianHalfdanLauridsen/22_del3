@@ -1,4 +1,7 @@
 package card;
+import player.Bank;
+import player.Player;
+import player.PlayerManager;
 
 /**
  * //TODO
