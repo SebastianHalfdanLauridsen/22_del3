@@ -162,22 +162,7 @@ public class Game {
                 GUIStreetAction(player, field);
             }
             case "GUI_Chance" -> {
-                System.out.println("GUI_Chance!");
-
-                AbstractCard card = deck.drawCard();
-                String description = "";
-                try {
-                    description = card.getDescription();
-                } catch (NullPointerException e){
-                    Main.getLogr().log(Level.INFO, "Card that was drawn was null");
-                    e.getStackTrace();
-                    System.exit(-1);
-                }
-                System.out.println("Player " + player.getGUIPlayer().getName() + " drew chancecard" + "\n\""+ description + "\"");
-
-                gui.displayChanceCard(description);
-                Game.sleep();
-                card.action(player);
+                GUIChanceAction(player);
             }
             case "GUI_Jail" -> {
                 System.out.println("haha JÆEL");
