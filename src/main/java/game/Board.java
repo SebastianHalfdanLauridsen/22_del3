@@ -97,8 +97,8 @@ public class Board {
                 f.setCar(player, false);
             }
             //displays the car on the next field
-            if(nextFieldIndex >= Game.MAX_FIELDS){
-                displayCar(player,gui.getFields()[nextFieldIndex - Game.MAX_FIELDS]);
+            if (nextFieldIndex >= Game.MAX_FIELDS) {
+                displayCar(player,gui.getFields()[nextFieldIndex % Game.MAX_FIELDS]);
             } else {
                 displayCar(player,gui.getFields()[nextFieldIndex]);
             }
