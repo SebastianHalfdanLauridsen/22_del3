@@ -1,4 +1,6 @@
 package card;
+import game.Board;
+import game.Game;
 import gui_main.GUI;
 import player.Player;
 
@@ -10,28 +12,35 @@ import player.Player;
 
 
 public class MoveOrDrawCard extends AbstractCard{
-    int move;
-    private Deck deck;
-    private GUI gui;
+    int moves;
+    private final GUI gui;
+    private final Board board;
+    private final Game game;
 
-
-    public MoveOrDrawCard(int move, Deck deck, GUI gui) {
-        this.move = move;
-        this.deck = deck;
+    public MoveOrDrawCard(int move, GUI gui, Board board, Game game) {
+        this.moves = move;
         this.gui = gui;
-
+        this.board = board;
+        this.game = game;
     }
 
-    public void action(Player player){
+    public void action(Player player) {
+        //TODO language resource bundle
+        String choice1 = "Move " + moves +  " field(s)";
+        String choice2 = "Draw a card";
         String chosenElement = gui.getUserSelection(
-                "Move 1 field or draw a card!",
-                "Move 1 field", "Draw a card"
+                "Move" + moves + " field(s) or draw a card!",
+                choice1, choice2
         );
 
-        if(chosenElement.equals("Move 1 field")){
-            player.setFieldPosition(move);
-        } else if (chosenElement.equals("Draw a card")){
-            deck.drawCard();
+        if(chosenElement.equals(choice1)){
+            int playerPosition = player.getFieldPosition();
+            int newPlayerPosition = moves + playerPosition;
+            board.displayMovingPlayer(player.getGUIPlayer(), moves, playerPosition);
+            game.movePlayer(player, newPlayerPosition);
+            game.GUIStreetAction(player, newPlayerPosition);
+        } else {
+            game.GUIChanceAction(player);
         }
 
 
