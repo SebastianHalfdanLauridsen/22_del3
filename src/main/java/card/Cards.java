@@ -1,4 +1,4 @@
-package game;
+package card;
 
 import card.Deck;
 
@@ -12,6 +12,9 @@ import card.MoveOrDrawCard;
 //import card.PassPlayerMoveCard;
 import card.PayBankCard;
 
+import game.Board;
+import game.Game;
+import game.Main;
 import gui_main.GUI;
 import player.Bank;
 import player.PlayerManager;
