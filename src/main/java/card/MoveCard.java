@@ -1,22 +1,27 @@
 package card;
+import game.Board;
+import game.Game;
+import gui_main.GUI;
 import player.Player;
 
-//TODO implement card function
-// - https://drive.google.com/file/d/1ymv0T5xWIvprTZkSO6DtWz9byFvZA9h3/view
-// - https://drive.google.com/file/d/15oSUaFK5NtryM21fVlUwhGYGYiCACye7/view
-
-
-
 public class MoveCard extends AbstractCard{
-    int Strandpromenaden;
+    private final int fieldIndex;
+    private final Board board;
+    private final Game game;
 
-    public MoveCard(int Strandpromenaden) {
-        this.Strandpromenaden = Strandpromenaden;
 
+    public MoveCard(int fieldIndex, Board board, Game game) {
+        this.fieldIndex = fieldIndex;
+        this.board = board;
+        this.game = game;
     }
 
-    public void action(Player player){
-        player.setFieldPosition(Strandpromenaden);
+
+    public void action(Player player) {
+        Game.sleep();
+        board.displayInstantMovingPlayer(player.getGUIPlayer(), fieldIndex);
+        game.movePlayer(player, fieldIndex);
+        game.fieldAction(player, fieldIndex);
     }
 
 }
