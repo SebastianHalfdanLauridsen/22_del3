@@ -35,6 +35,8 @@ public class Main {
         Main.setupLogger();
 
         setLanguage();
+        Game game = new Game();
+        game.runGame();
     }
 
     public static Logger getLogr() {
@@ -42,7 +44,8 @@ public class Main {
     }
     //TODO language param
     public static void setLanguage(){
-        Locale locale = new Locale("no");
+        //Locale locale = new Locale("no");
+        Locale locale = Locale.getDefault();
         language = ResourceBundle.getBundle("language", locale);
     }
 
