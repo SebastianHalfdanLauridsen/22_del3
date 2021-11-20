@@ -1,5 +1,5 @@
 package player;
-import die.Die;
+
 import game.Board;
 import game.Fields;
 import game.Main;
@@ -76,48 +76,34 @@ public class Bank {
         return false;
     }
 
+    private void sellAllFields(int playerIndex) {
+        //"sell" all owned fields to bank
+        Player player = playerManager.getPlayers(playerIndex);
+        for(int fieldIndex = 0; fieldIndex < player.getOwnedFields().size(); fieldIndex++) {
+            GUI_Street streetField = (GUI_Street) fields.getFields()[player.getOwnedFields().get(fieldIndex)];
+            int streetValue = getFieldRent(streetField);
+            changeBalance(player, streetValue);
+        }
+
+    }
+
     /**
-     * Determines the winning player in regard to how much money and property value each player has
-     *   if two or more players have the same amount of total value to their name a die will be rolled
-     *   and a winning player will be determined by chance
+     * Determines the winning player in regard to how much money and property value each player has.
+     * The losing player cannot sell their fields and win.
      */
     private void determineWinningPlayer() {
-        ArrayList<Integer> balance = new ArrayList<>();
-        //"sell" all owned fields to bank
+        ArrayList<Integer> balances = new ArrayList<>();
         for (int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
-            //the losing player may not sell their fields. THEY ARE LOSERS HAHAHAHAHAHA
             if(hasLost(playerManager.getPlayers(playerIndex))) {
+                balances.add(0);
                 continue;
             }
-            Player player = playerManager.getPlayers(playerIndex);
-            for(int fieldIndex = 0; fieldIndex < player.getOwnedFields().size(); fieldIndex++) {
-                GUI_Street streetField = (GUI_Street) fields.getFields()[player.getOwnedFields().get(fieldIndex)];
-                int streetValue = getFieldRent(streetField);
-                changeBalance(player, streetValue);
-            }
+            sellAllFields(playerIndex);
             int playerBalance = playerManager.getPlayers(playerIndex).getGUIPlayer().getBalance();
-            balance.add(playerBalance);
+            balances.add(playerBalance);
         }
-        Integer maxVal = Collections.max(balance);
-
-        int numberOfMaxValues = Collections.frequency(balance,maxVal);
-        int winningPlayerIndex = -1;
-
-        //TODO maybe make visual repr in GUI
-        if (numberOfMaxValues > 1) {
-            Die die = new Die();
-            while (winningPlayerIndex == -1){
-                //rolls the die for each eligible player to determine the winner
-                for (int playerIndex = 0; playerIndex < balance.size(); playerIndex++) {
-                    die.roll();
-                    if (balance.indexOf(playerIndex) == maxVal && die.getFace() == 6) {
-                        winningPlayerIndex = playerIndex;
-                    }
-                }
-            }
-        } else {
-            winningPlayerIndex = balance.indexOf(maxVal);
-        }
+        int balanceOfWinner = Collections.max(balances);
+        int winningPlayerIndex = balances.indexOf(balanceOfWinner);
         this.winningPlayer = playerManager.getPlayers(winningPlayerIndex);
     }
 
