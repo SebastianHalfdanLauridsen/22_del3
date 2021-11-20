@@ -1,7 +1,6 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 import die.Die;
 import gui_fields.GUI_Car;
@@ -14,7 +13,6 @@ import player.Player;
 import player.PlayerManager;
 
 public class BoardTest {
-
 
     @Test
     public void displayStartUITest() {
@@ -97,7 +95,6 @@ public class BoardTest {
     public void displayInstantMovingPlayerTest() {
         Main.setLanguage();
 
-
         GUI gui = new GUI(new Fields().getFields());
         Board board = new Board(gui);
         PlayerManager playerManager = new PlayerManager();
@@ -129,5 +126,20 @@ public class BoardTest {
         Game.sleep(5000);
     }
 
+    @Test
+    public void displayEndGameTest() {
+        Main.setLanguage();
 
+        GUI gui = new GUI(new Fields().getFields());
+        PlayerManager playerManager = new PlayerManager();
+        Board board = new Board(gui);
+
+        playerManager.createPlayer("name",10,new GUI_Car());
+        board.displayEndGame(playerManager.getPlayers(0));
+    }
+
+    @Test
+    public void displayBoughtFieldTest() {
+
+    }
 }
