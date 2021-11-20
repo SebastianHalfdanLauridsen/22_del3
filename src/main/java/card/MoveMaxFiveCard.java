@@ -1,4 +1,6 @@
 package card;
+import game.Board;
+import game.Game;
 import gui_main.GUI;
 import player.Player;
 
@@ -9,22 +11,27 @@ import player.Player;
 
 
 public class MoveMaxFiveCard extends AbstractCard{
-    private GUI gui;
+    private final GUI gui;
+    private final Board board;
+    private final Game game;
 
-    public MoveMaxFiveCard(GUI gui) {
+    public MoveMaxFiveCard(GUI gui, Board board, Game game) {
         this.gui = gui;
-
+        this.board = board;
+        this.game = game;
     }
 
     //Lets the player move 1 to 5 fields depending on the number input
-    public void action(Player player){
+    public void action(Player player){ //TODO something is very wrong
         String chosenElement = gui.getUserSelection(
                 "Choose how many field you want to move!",
                 "1", "2", "3", "4", "5"
         );
 
         int numberInput = Integer.parseInt(chosenElement);
-        player.setFieldPosition(player.getFieldPosition() + numberInput);
 
+        board.displayMovingPlayer(player.getGUIPlayer(), numberInput, player.getFieldPosition());
+        game.movePlayer(player, numberInput);
+        game.fieldAction(player, player.getFieldPosition() + numberInput);
     }
 }
