@@ -40,12 +40,18 @@ public class Game {
         this.deck = new Deck();
     }
 
-
+    /**
+     * Creates all the cards and shuffles them
+     */
     private void cardSetup() {
         new Cards(deck, board, bank, playerManager, gui, this);
         deck.shuffleCards();
     }
 
+    /**
+     * Prompts players to enter their names and adds them to PlayerManager
+     *   and displays their cars on the start field
+     */
     private void playerSetup() {
         board.displayStartUI();
         //create players
@@ -61,6 +67,11 @@ public class Game {
         }
     }
 
+    /**
+     * Begins the game, runs playerSetup(), displays all the players on the scoreboard, runs cardSetup(),
+     *   creates a new hand with a normal die
+     *   and runs the rounds until a player has won and displays the end game info after
+     */
     public void runGame() {
         playerSetup();
         board.displayScoreboard(playerManager);
@@ -75,13 +86,14 @@ public class Game {
     }
 
     /**
-     * //TODO
+     * Runs each player's turn once every round if they are not in jail
      */
     private void playRound() {
         for (int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
             Player currentPlayer = playerManager.getPlayers(playerIndex);
             if (currentPlayer.isInJail() && !currentPlayer.hasJailCard()) {
-                gui.showMessage("haha u in jæl");
+                //TODO resource bundle language
+                gui.showMessage("haha u in jæel");
                 currentPlayer.setInJail(false);
                 continue;
             }
@@ -91,6 +103,11 @@ public class Game {
         }
     }
 
+    /**
+     * Lets the player roll the die, displays its value in the gui,
+     *   moves the player according to the die value and begins the fieldAction
+     * @param currentPlayer The player whose turn it is
+     */
     private void playTurn(Player currentPlayer) {
         int currentFieldIndex = currentPlayer.getFieldPosition();
 
@@ -113,6 +130,11 @@ public class Game {
         fieldAction(currentPlayer, newFieldIndex);
     }
 
+    /**
+     * The player buys the field if it is not owned, pays rent to the owner otherwise
+     * @param player the player who buys the field or pays rent
+     * @param field the field to be bought or rented
+     */
     public void GUIStreetAction(Player player, int field) {
         Player fieldOwner = bank.isOwned(field);
         if (fieldOwner == null) {
@@ -122,6 +144,11 @@ public class Game {
         }
     }
 
+    /**
+     * The player draws a chance card, the description is displayed
+     *   and the action of the chance card is called
+     * @param player the player who draws a chance card and is affected by its actions
+     */
     public void GUIChanceAction(Player player) {
         System.out.println("GUI_Chance!");
 
@@ -141,6 +168,10 @@ public class Game {
         card.action(player);
     }
 
+    /**
+     * Moves the player to jail and sets their in jail status to true
+     * @param player the player to be put in jail
+     */
     private void GUIGoToJailAction(Player player) {
         player.setInJail(true);
         int jailField = player.getFieldPosition() - MAX_FIELDS/2;
@@ -148,6 +179,11 @@ public class Game {
         board.displayInstantMovingPlayer(player.getGUIPlayer(), jailField);
     }
 
+    /**
+     * Determines which field the player is on and performs the required action
+     * @param player the player on the field
+     * @param fieldIndex the field
+     */
     public void fieldAction(Player player, int fieldIndex) {
         String fieldType = fields.getFields()[fieldIndex].getClass().getSimpleName();
         switch (fieldType) {
@@ -173,6 +209,11 @@ public class Game {
         }
     }
 
+    /**
+     * Moves the player to a field in the backend and pays the player if they pass start
+     * @param player the player to move field or get payed
+     * @param fieldIndex the field
+     */
     public void movePlayer(Player player, int fieldIndex) {
         if (fieldIndex >= MAX_FIELDS || fieldIndex == 0) {
             bank.changeBalance(player,CROSS_START_MONEY);

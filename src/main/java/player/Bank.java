@@ -8,6 +8,9 @@ import gui_fields.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * //TODO
+ */
 public class Bank {
     private final PlayerManager playerManager;
     private final Board board;
@@ -155,7 +158,7 @@ public class Bank {
      * Converts the fields' subtext to only numbers and returns the price of the field
      * @param field the field whose subtext needs to be converted
      * @return the subtext in only numbers
-     */ //TODO number format exc
+     */
     private int getFieldRent(GUI_Street field) throws NumberFormatException {
         String fieldPrice = field.getRent();
         //thanks to https://attacomsian.com/blog/java-extract-digits-from-string

@@ -40,7 +40,7 @@ public class Main {
     public static Logger getLogr() {
         return logr;
     }
-
+    //TODO language param
     public static void setLanguage(){
         Locale locale = new Locale("no");
         language = ResourceBundle.getBundle("language", locale);

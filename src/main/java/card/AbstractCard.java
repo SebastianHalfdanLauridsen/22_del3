@@ -2,6 +2,9 @@ package card;
 
 import player.Player;
 
+/**
+ * //TODO
+ */
 public abstract class AbstractCard {
     private String name;
     private String description;

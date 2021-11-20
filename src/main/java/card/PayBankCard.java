@@ -2,12 +2,9 @@ package card;
 import player.Bank;
 import player.Player;
 
-
-//TODO implement card function
-// - https://drive.google.com/file/d/1ymv0T5xWIvprTZkSO6DtWz9byFvZA9h3/view
-
-
-
+/**
+ * //TODO
+ */
 public class PayBankCard extends AbstractCard{
     int payAmount;
     private final Bank bank;

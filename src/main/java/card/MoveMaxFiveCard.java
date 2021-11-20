@@ -4,12 +4,9 @@ import game.Game;
 import gui_main.GUI;
 import player.Player;
 
-//TODO implement card function
-// - https://drive.google.com/file/d/1ymv0T5xWIvprTZkSO6DtWz9byFvZA9h3/view
-// - https://drive.google.com/file/d/15oSUaFK5NtryM21fVlUwhGYGYiCACye7/view
-
-
-
+/**
+ * //TODO
+ */
 public class MoveMaxFiveCard extends AbstractCard{
     private final GUI gui;
     private final Board board;

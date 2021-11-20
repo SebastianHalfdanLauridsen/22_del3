@@ -19,7 +19,9 @@ import gui_main.GUI;
 import player.Bank;
 import player.PlayerManager;
 
-
+/**
+ * //TODO
+ */
 public class Cards {
     private final Deck deck;
     private final Board board;
@@ -27,7 +29,6 @@ public class Cards {
     private final PlayerManager playerManager;
     private final GUI gui;
     private final Game game;
-
 
     public Cards(Deck deck, Board board, Bank bank, PlayerManager playerManager, GUI gui, Game game) {
         this.deck = deck;

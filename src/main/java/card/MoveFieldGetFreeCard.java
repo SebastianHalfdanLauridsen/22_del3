@@ -8,7 +8,9 @@ import game.Game;
 
 import java.util.Arrays;
 
-
+/**
+ * //TODO
+ */
 public class MoveFieldGetFreeCard extends AbstractCard {
 
     //Declares the two fields with the same color

@@ -7,8 +7,9 @@ package card;
 
 //der skal være en getOutOfJailCount på hver spiller, som koden så skal kunne ændre værdien på.
 
-
-//tilføjer et count til getOutOfJailCounter (hvor jail field'et så skal tjekke om brugeren har et count eller ej)
+/**
+ * //TODO
+ */
 public class GetOutOfJailCard extends AbstractCard{
     getOutOfJailCount = 1;
 }

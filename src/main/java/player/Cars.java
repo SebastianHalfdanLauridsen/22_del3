@@ -4,6 +4,9 @@ import gui_fields.GUI_Car;
 
 import java.awt.Color;
 
+/**
+ * //TODO
+ */
 public class Cars {
     private GUI_Car[] cars;
 

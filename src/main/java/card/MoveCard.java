@@ -1,9 +1,12 @@
 package card;
+
 import game.Board;
 import game.Game;
-import gui_main.GUI;
 import player.Player;
 
+/**
+ * //TODO
+ */
 public class MoveCard extends AbstractCard{
     private final int fieldIndex;
     private final Board board;

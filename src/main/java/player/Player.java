@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * //TODO
+ */
 public class Player {
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -33,6 +36,11 @@ public class Player {
     public GUI_Player getGUIPlayer() {
         return GUIPlayer;
     }
+
+    /**
+     * //TODO
+     * @param fieldPosition
+     */
     public void setFieldPosition(int fieldPosition) {
         if(fieldPosition < 0 || fieldPosition > Game.MAX_FIELDS) {
             logr.log(Level.INFO, "The player's field position cannot be less than 0 " +
