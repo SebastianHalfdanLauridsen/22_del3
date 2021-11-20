@@ -31,11 +31,12 @@ public class MoveOrDrawCard extends AbstractCard{
 
         if(chosenElement.equals(choice1)){
             int playerPosition = player.getFieldPosition();
-            int newPlayerPosition = moves + playerPosition;
+            //% in case moves + playerPosition is more than MAX_FIELDS
+            int newPlayerPosition = (moves + playerPosition) % Game.MAX_FIELDS;
             board.displayMovingPlayer(player.getGUIPlayer(), moves, playerPosition);
             game.movePlayer(player, newPlayerPosition);
-            int realNewPlayerPosition = game.getRealNewIndex(playerPosition, moves);
-            game.fieldAction(player, realNewPlayerPosition);
+            game.fieldAction(player, newPlayerPosition);
+
         } else {
             game.GUIChanceAction(player);
         }
