@@ -86,6 +86,13 @@ public class Game {
     private void playRound() {
         for (int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
             Player currentPlayer = playerManager.getPlayers(playerIndex);
+            if (currentPlayer.isInJail() && !currentPlayer.hasJailCard()) {
+                gui.showMessage("haha u in jæl");
+                currentPlayer.setInJail(false);
+                continue;
+            }
+            currentPlayer.setJailCard(false);
+
             playTurn(currentPlayer);
         }
     }
@@ -121,7 +128,33 @@ public class Game {
         }
     }
 
-    private void fieldAction(Player player, int field) {
+    public void GUIChanceAction(Player player) {
+        System.out.println("GUI_Chance!");
+
+        AbstractCard card = deck.drawCard();
+        String description = "";
+        try {
+            description = card.getDescription();
+        } catch (NullPointerException e){
+            Main.getLogr().log(Level.INFO, "Card that was drawn was null");
+            e.getStackTrace();
+            System.exit(-1);
+        }
+        System.out.println("Player " + player.getGUIPlayer().getName() + " drew chancecard" + "\n\""+ description + "\"");
+
+        gui.displayChanceCard(description);
+        Game.sleep();
+        card.action(player);
+    }
+
+    private void GUIGoToJailAction(Player player) {
+        player.setInJail(true);
+        int jailField = player.getFieldPosition() - MAX_FIELDS/2;
+        movePlayer(player, jailField);
+        board.displayInstantMovingPlayer(player.getGUIPlayer(), jailField);
+    }
+
+    public void fieldAction(Player player, int field) {
         String fieldType = fields.getFields()[field].getClass().getSimpleName();
         switch (fieldType) {
             case "GUI_Street" -> {
@@ -147,7 +180,12 @@ public class Game {
                 card.action(player);
             }
             case "GUI_Jail" -> {
-                System.out.println("JÆEL");
+                System.out.println("haha JÆEL");
+            }
+            case "GUI_Tax" -> {
+                System.out.println(player.getGUIPlayer().getName() + " went to jail");
+                Game.sleep();
+                GUIGoToJailAction(player);
             }
             case "GUI_Start" -> {
                 System.out.println("start field!");
