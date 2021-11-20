@@ -5,15 +5,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * //TODO
+ */
 public class Hand {
 
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private final int diesCount;
     private final ArrayList<Die> dice;
 
-    public Hand(int dice, int sides) {
+    public Hand(int dice, int sides) throws NumberFormatException{
         if(dice < 1 || sides < 1) {
             logr.log(Level.INFO, "Hand constructor arguments cannot be less than 1.");
+            throw new NumberFormatException();
         }
         this.diesCount = dice;
         this.dice = new ArrayList<>();
@@ -26,7 +30,9 @@ public class Hand {
         for(int i = 0; i < diesCount; i++) {
             dice.get(i).roll();
         }
+        return sum();
     }
+
     public int sum() {
         int sum = 0;
         for (int i = 0; i < diesCount; i++) {
@@ -35,16 +41,10 @@ public class Hand {
         return sum;
     }
 
-    public int getDiesCount() {
-        return diesCount;
-    }
-    public List<Die> getDice() {
+    public ArrayList<Die> getDice() {
         return dice;
     }
-
-    //TODO
-    @Override
-    public String toString() {
-        return "tostringHand";
+    public int getDiesCount() {
+        return diesCount;
     }
 }
