@@ -10,12 +10,95 @@ import gui_main.GUI;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class BankTest {
 
 
     //Test om balance bliver skiftet
     @Test //TODO test determineWinningPlayer and hasLost methods via this class
-    // Test at spilleren der har tabts balance bliver sat til 0, test at andre spillere ikke har tabt
+    public void determineWinningPlayerTest() {
+        Main.setLanguage();
+        determineWinningPlayerTest1();
+        determineWinningPlayerTest2();
+
+    }
+    private void determineWinningPlayerTest1(){
+        Game game = new Game();
+        Bank bank = game.getBank();
+        PlayerManager playerManager = game.getPlayerManager();
+        Cars cars = game.getCars();
+        Fields fields = game.getFields();
+        Board board = game.getBoard();
+
+        playerManager.createPlayer("Bilen", 10, cars.getCars()[0]);
+        playerManager.createPlayer("Skibet", 5, cars.getCars()[1]);
+
+        Player player1 = playerManager.getPlayers(0);
+        Player player2 = playerManager.getPlayers(1);
+
+        board.displayScoreboard(playerManager);
+
+        //Gives all, except 1, GUIStreetFields to player 2
+        ArrayList<GUI_Street> GUIStreetFields = new ArrayList<>();
+        for (int i = 0; i < 23; i++){
+            GUI_Field field = fields.getFields()[i];
+            if (field instanceof GUI_Street) {
+                bank.receiveField(i, player2);
+            }
+        }
+
+        bank.receiveField(23, player1);
+
+        Game.sleep(1000);
+
+        board.displayInstantMovingPlayer(player2.getGUIPlayer(), 12);
+        game.movePlayer(player2, 12);
+
+        board.displayMovingPlayer(player2.getGUIPlayer(),11, player2.getFieldPosition());
+        game.movePlayer(player2, 12);
+        game.fieldAction(player2, 23);
+
+        Game.sleep(1000);
+        Assert.assertEquals(player1, bank.getWinningPlayer());
+        Game.sleep(5000);
+
+    }
+    private void determineWinningPlayerTest2(){
+        Game game = new Game();
+        Bank bank = game.getBank();
+        PlayerManager playerManager = game.getPlayerManager();
+        Cars cars = game.getCars();
+        Board board = game.getBoard();
+
+        playerManager.createPlayer("Bilen", 10, cars.getCars()[0]);
+        playerManager.createPlayer("Skibet", 5, cars.getCars()[1]);
+
+        Player player1 = playerManager.getPlayers(0);
+        Player player2 = playerManager.getPlayers(1);
+
+        board.displayScoreboard(playerManager);
+
+        int fieldIndex = 23;
+        bank.receiveField(fieldIndex, player1);
+
+        Game.sleep(2000);
+
+        game.movePlayer(player2, 3);
+        board.displayInstantMovingPlayer(player2.getGUIPlayer(),3);
+        Game.sleep(1000);
+
+
+        game.movePlayer(player2, fieldIndex);
+        board.displayInstantMovingPlayer(player2.getGUIPlayer(),fieldIndex);
+        game.fieldAction(player2, fieldIndex);
+
+        Game.sleep(1000);
+        Assert.assertEquals(player1, bank.getWinningPlayer());
+        Game.sleep(5000);
+    }
+
+    @Test
     public void changeBalanceTest() {
         Main.setLanguage();
 
