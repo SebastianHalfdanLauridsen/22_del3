@@ -34,15 +34,10 @@ public class Game {
         this.fields = new Fields();
         this.cars = new Cars();
         this.playerManager = new PlayerManager();
-
         this.gui = new GUI(fields.getFields(), new Color(229, 239, 222));
         this.board = new Board(gui);
         this.bank = new Bank(playerManager, board, fields);
-
         this.deck = new Deck();
-
-        playerSetup();
-        board.displayScoreboard(playerManager);
     }
 
 
@@ -67,6 +62,8 @@ public class Game {
     }
 
     public void runGame() {
+        playerSetup();
+        board.displayScoreboard(playerManager);
         cardSetup();
         sleep();
         hand = new Hand(1, 6);
@@ -151,12 +148,12 @@ public class Game {
         board.displayInstantMovingPlayer(player.getGUIPlayer(), jailField);
     }
 
-    public void fieldAction(Player player, int field) {
-        String fieldType = fields.getFields()[field].getClass().getSimpleName();
+    public void fieldAction(Player player, int fieldIndex) {
+        String fieldType = fields.getFields()[fieldIndex].getClass().getSimpleName();
         switch (fieldType) {
             case "GUI_Street" -> {
                 System.out.println("GUI_Street!");
-                GUIStreetAction(player, field);
+                GUIStreetAction(player, fieldIndex);
             }
             case "GUI_Chance" -> {
                 GUIChanceAction(player);
@@ -176,21 +173,45 @@ public class Game {
         }
     }
 
-    public void movePlayer(Player player, int field) {
-        if (field >= MAX_FIELDS || field == 0) {
+    public void movePlayer(Player player, int fieldIndex) {
+        if (fieldIndex >= MAX_FIELDS || fieldIndex == 0) {
             bank.changeBalance(player,CROSS_START_MONEY);
-            player.setFieldPosition(field - MAX_FIELDS);
+            player.setFieldPosition(fieldIndex % MAX_FIELDS);
         } else {
-            player.setFieldPosition(field);
+            player.setFieldPosition(fieldIndex);
         }
     }
 
-    private int getRealNewIndex(int currentFieldIndex, int diceSum) {
-        if ((currentFieldIndex + diceSum) >= MAX_FIELDS) {
-            return currentFieldIndex + diceSum - MAX_FIELDS;
+    public int getRealNewIndex(int currentFieldIndex, int moves) {
+        if ((currentFieldIndex + moves) >= MAX_FIELDS) {
+            return (currentFieldIndex + moves) % MAX_FIELDS;
         } else {
-            return currentFieldIndex + diceSum;
+            return (currentFieldIndex + moves);
         }
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+    public Board getBoard() {
+        return board;
+    }
+    public PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+    public Bank getBank() {
+        return bank;
+    }
+    public Fields getFields() {
+        return fields;
+    }
+
+    public Cars getCars() {
+        return cars;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 
     public static void sleep(){
