@@ -1,11 +1,8 @@
 package card;
 
 import game.Board;
-import game.Fields;
 import game.Game;
 import game.Main;
-import gui_fields.GUI_Car;
-import gui_fields.GUI_Ownable;
 import gui_fields.GUI_Street;
 import gui_main.GUI;
 import org.junit.Test;
