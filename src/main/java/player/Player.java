@@ -13,6 +13,8 @@ public class Player {
     private int fieldPosition;
     private final GUI_Player GUIPlayer;
     private final ArrayList<Integer> ownedFields;
+    private boolean inJail = false;
+    private boolean jailCard = false;
 
     public Player(int startField, GUI_Player GUIPlayer) {
         this.fieldPosition = startField;
@@ -38,5 +40,18 @@ public class Player {
             return;
         }
         this.fieldPosition = fieldPosition;
+    }
+
+    public boolean hasJailCard() {
+        return jailCard;
+    }
+    public void setJailCard(boolean jailCard) {
+        this.jailCard = jailCard;
+    }
+    public boolean isInJail() {
+        return inJail;
+    }
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
     }
 }
