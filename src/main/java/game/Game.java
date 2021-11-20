@@ -6,6 +6,7 @@ import gui_fields.*;
 import gui_main.GUI;
 
 import player.Bank;
+import player.Cars;
 import player.Player;
 import player.PlayerManager;
 
