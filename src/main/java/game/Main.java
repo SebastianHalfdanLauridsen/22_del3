@@ -1,9 +1,5 @@
 package game;
 
-import card.Deck;
-import card.MoveCard;
-import card.PayBankCard;
-
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
