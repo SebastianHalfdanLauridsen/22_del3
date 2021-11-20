@@ -46,46 +46,7 @@ public class Game {
 
 
     private void cardSetup() {
-        /*
-        deck.addCard(Main.getLanguage().getString("cardName"),
-                Main.getLanguage().getString("cardDescription1"),
-                new MoveCard(23, board, this)
-        );
-        deck.addCard(Main.getLanguage().getString("cardName"),
-                Main.getLanguage().getString("cardDescription2"),
-                new PayBankCard(2, bank)
-        );
-        deck.addCard(Main.getLanguage().getString("cardName"),
-                Main.getLanguage().getString("cardDescription3"),
-                new GetBankMoneyCard(2,bank)
-        );
-        deck.addCard(Main.getLanguage().getString("cardName"),
-                Main.getLanguage().getString("cardDescription4"),
-                new GetAllPlayerMoneyCard(1, bank, playerManager)
-        );
-        deck.addCard("MoveMax",
-                "Hey",
-                new MoveMaxCard(5, gui, board, this)
-        );*/
-        /*
-        deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
-                new MoveGetFreeCard(10,11)
-        );
-        deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et lyseblått felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
-                new MoveGetFreeCard(4,5)
-        );
-        deck.addCard("SJANSE",
-                "FRI FELT! Flytt til et rødt felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
-                new MoveGetFreeCard(13,14)
-        );
-
-        deck.addCard("SJANSE",
-                "Flytt opptil 5 felter.",
-                new MoveMaxCard(5)
-        );
-         */
+        new Cards(deck, board, bank, playerManager, gui, this);
         deck.shuffleCards();
     }
 
