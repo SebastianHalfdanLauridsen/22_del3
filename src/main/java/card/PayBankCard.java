@@ -19,6 +19,6 @@ public class PayBankCard extends AbstractCard{
     }
 
     public void action(Player player) {
-        bank.changeBalance(player, payAmount);
+        bank.changeBalance(player, -payAmount);
     }
 }
