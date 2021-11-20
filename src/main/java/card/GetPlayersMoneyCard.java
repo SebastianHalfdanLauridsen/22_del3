@@ -1,7 +1,32 @@
 package card;
 
-//TODO implement card function
-// - https://drive.google.com/file/d/1ymv0T5xWIvprTZkSO6DtWz9byFvZA9h3/view
+/**
+ * //TODO
+ */
+public class GetPlayersMoneyCard extends AbstractCard {
+    int payAmount;
 
-public class GetPlayersMoneyCard extends AbstractCard{
+    private final Bank bank;
+    private final PlayerManager playerManager;
+
+    public GetPlayersMoneyCard(int payAmount, Bank bank, PlayerManager playerManager) {
+        this.payAmount = payAmount;
+        this.bank = bank;
+        this.playerManager = playerManager;
+    }
+
+    public void action(Player player) {
+        int playerCount = playerManager.getPlayerCount();
+
+        for (int playerIndex = 0; playerIndex < playerCount; playerIndex++) {
+            Player thisPlayer = playerManager.getPlayers(playerIndex);
+            if (thisPlayer == player) {
+                continue;
+            }
+            bank.changeBalance(thisPlayer, -payAmount);
+        }
+
+        int receiveAmount = payAmount * (playerCount - 1);
+        bank.changeBalance(player, receiveAmount);
+    }
 }
