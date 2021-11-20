@@ -1,67 +1,72 @@
 package card;
+
 import game.Board;
-import player.Bank;
 import gui_main.GUI;
+import player.Bank;
 import player.Player;
 import game.Game;
-import game.Board;
 
-import gui_codebehind.GUI_BoardController;
-import gui_fields.*;
-
-
-
-//TODO implement card function
-// - https://drive.google.com/file/d/1ymv0T5xWIvprTZkSO6DtWz9byFvZA9h3/view
-// - https://drive.google.com/file/d/15oSUaFK5NtryM21fVlUwhGYGYiCACye7/view
-
-
+import java.util.Arrays;
 
 
 public class MoveFieldGetFreeCard extends AbstractCard {
 
     //Declares the two fields with the same color
-    int FieldColorPosition, FieldColorPosition2;
-    private GUI gui;
-    private Game game;
-    private Board board;
+    private final int[] field;
+    private final GUI gui;
+    private final Game game;
+    private final Board board;
+    private final Bank bank;
+    private final String[] choice;
 
-    public MoveFieldGetFreeCard(int FieldColorPosition, int FieldColorPosition2, Bank bank,GUI gui, Game game, Board board) {
-        this.FieldColorPosition = FieldColorPosition;
-        this.FieldColorPosition2 = FieldColorPosition2;
+    public MoveFieldGetFreeCard(int field1, int field2, GUI gui, Game game, Board board, Bank bank) {
+        this.field = new int[]{field1, field2};
+        this.choice = new String[2];
         this.gui = gui;
         this.game = game;
         this.board = board;
+        this.bank = bank;
+    }
 
+    public MoveFieldGetFreeCard(int field1, int field2, int field3, int field4, GUI gui, Game game, Board board, Bank bank) {
+        this.field = new int[]{field1, field2, field3, field4};
+        this.choice = new String[4];
+        this.gui = gui;
+        this.game = game;
+        this.board = board;
+        this.bank = bank;
     }
 
     //action() moves the player to the chosen field which depends on the given action card
     public void action(Player player) {
-        String chosenElement = gui.getUserSelection(
-                "Choose which of the two free fields you wanna stay on!",
-                "Color field 1", "Color field 2"
-        );
-
-        int moves;
-
-        //Checks which one the player chose
-        if (chosenElement.equals("Color field 1")) {
-            game.movePlayer(player, FieldColorPosition);
-            moves = FieldColorPosition - player.getFieldPosition();
-        } else {
-            game.movePlayer(player, FieldColorPosition2);
-            moves = FieldColorPosition2 - player.getFieldPosition();
+        String chosenElement;
+        //Choice array filler
+        for (int i = 0; i < field.length; i++) {
+            choice[i] = gui.getFields()[field[i]].getTitle();
         }
 
-        //Checks whether the colored field is owned or not with GUIStreetAction()
-        board.displayMovingPlayer(player.getGUIPlayer(), moves, player.getFieldPosition());
-        game.GUIStreetAction(player, FieldColorPosition);
+        if (field.length == 2) {
+            chosenElement = gui.getUserSelection(
+                    "Choose which of the two free fields you wanna stay on!",
+                    choice //mayhaps
+            );
+        } else {
+            chosenElement = gui.getUserSelection(
+                    "Choose which of the two free fields you wanna stay on!",
+                    choice[0], choice[1], choice[2], choice[3]
+            );
+        }
 
+        int index = Arrays.asList(choice).indexOf(chosenElement);
+        int chosenField = field[index];
+
+        game.movePlayer(player, chosenField);
+        board.displayInstantMovingPlayer(player.getGUIPlayer(), chosenField);
+        //the player receives the field or pays rent to the owner
+        if (bank.isOwned(chosenField) == null) {
+            bank.receiveField(chosenField, player);
+        } else {
+            game.GUIStreetAction(player, chosenField);
+        }
     }
-
-
-
-
-
-
 }
