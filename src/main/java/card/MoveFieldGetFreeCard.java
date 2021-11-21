@@ -10,7 +10,8 @@ import game.Game;
 import java.util.Arrays;
 
 /**
- * //TODO
+ * Lets the player select between either 2 or 4 street fields to move to
+ *   and gives them the field for free if it has no owner
  */
 public class MoveFieldGetFreeCard extends AbstractCard {
     private final int[] field;
