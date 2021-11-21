@@ -14,7 +14,7 @@ import java.awt.Color;
 import java.util.logging.Level;
 
 /**
- * //TODO
+ * Runs Monopoly Junior and all of its main functions
  */
 public class Game {
     private final GUI gui;
