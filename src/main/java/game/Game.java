@@ -96,12 +96,13 @@ public class Game {
         for (int playerIndex = 0; playerIndex < playerManager.getPlayerCount(); playerIndex++) {
             Player currentPlayer = playerManager.getPlayers(playerIndex);
             if (currentPlayer.isInJail() && !currentPlayer.hasJailCard()) {
-                //TODO resource bundle language
-                gui.showMessage("haha u in jæel");
+                gui.showMessage(currentPlayer.getGUIPlayer().getName() + Main.getLanguage().getString("isInJailMessage"));
                 currentPlayer.setInJail(false);
                 continue;
+            } else if (currentPlayer.isInJail() && currentPlayer.hasJailCard()){
+                currentPlayer.setJailCard(false);
+                currentPlayer.setInJail(false);
             }
-            currentPlayer.setJailCard(false);
             playTurn(currentPlayer);
         }
     }
