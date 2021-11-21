@@ -37,12 +37,45 @@ public class AllCardsTest {
 
     @Test
     public void GetOutOfJailTest() {
+        setup();
 
+        playerManager.createPlayer("Bilen",10,cars.getCars()[0]);
+
+        Player bilen = playerManager.getPlayers(0);
+
+        deck.addCard("name","desc", new GetOutOfJailCard());
+
+        board.displayMovingPlayer(bilen.getGUIPlayer(),6,0);
+
+        deck.drawCard().action(bilen);
+
+        Assert.assertTrue("dd",bilen.hasJailCard());
+
+        Game.sleep(5000);
     }
 
     @Test
     public void GetPlayersMoneyCardTest() {
+        setup();
 
+        playerManager.createPlayer("Bilen", 10,cars.getCars()[0]);
+        playerManager.createPlayer("Skibet", 10,cars.getCars()[1]);
+        playerManager.createPlayer("Katten", 10,cars.getCars()[2]);
+        playerManager.createPlayer("Hunden", 10,cars.getCars()[3]);
+
+        board.displayScoreboard(playerManager);
+
+        Player bilen = playerManager.getPlayers(0);
+
+        deck.addCard("name","desc", new GetPlayersMoneyCard(1, bank, playerManager));
+
+        deck.drawCard().action(bilen);
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println(playerManager.getPlayers(i).getGUIPlayer().getBalance());
+        }
+
+        Game.sleep(5000);
     }
 
 
