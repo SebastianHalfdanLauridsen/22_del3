@@ -39,6 +39,11 @@ public class Bank {
         board.changeFieldDescription(Main.getLanguage().getString("ownerDescription") + player.getGUIPlayer().getName(), fieldIndex);
     }
 
+    /**
+     * //TODO
+     * @param fieldIndex
+     * @param player
+     */
     public void receiveField(int fieldIndex, Player player) {
         GUI_Field field = fields.getFields()[fieldIndex];
 
@@ -49,9 +54,9 @@ public class Bank {
 
     /**
      * Lets the player pay the fieldOwner the amount of rent from the fieldOwners field
-     * @param player the payee
-     * @param fieldOwner the owner of the field
-     * @param field the field
+     * @param player the payee of rent
+     * @param fieldOwner the owner of the field to receive rent
+     * @param field the field with a rent
      */
     public void payFieldRent(Player player, Player fieldOwner, GUI_Street field) {
         int fieldRent = getFieldRent( field);
@@ -66,6 +71,11 @@ public class Bank {
         }
     }
 
+    /**
+     * //TODO
+     * @param player
+     * @return
+     */
     private boolean hasLost(Player player) {
         int playerBalance = player.getGUIPlayer().getBalance();
         if(playerBalance <= 0) {
@@ -76,6 +86,10 @@ public class Bank {
         return false;
     }
 
+    /**
+     * //TODO
+     * @param playerIndex
+     */
     private void sellAllFields(int playerIndex) {
         //"sell" all owned fields to bank
         Player player = playerManager.getPlayers(playerIndex);
