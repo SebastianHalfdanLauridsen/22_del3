@@ -1,6 +1,6 @@
 package game;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import die.Die;
 import gui_fields.GUI_Car;
