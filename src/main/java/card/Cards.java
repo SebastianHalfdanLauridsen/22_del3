@@ -45,12 +45,12 @@ public class Cards {
                 Main.getLanguage().getString("cardDescription3"),
                 new GetBankMoneyCard(2,bank)
         );
-        //TODO DENIZ KOMM NUUUUUU
+
         deck.addCard(Main.getLanguage().getString("cardName"),
                 Main.getLanguage().getString("cardDescription4"),
                 new GetPlayersMoneyCard(1, bank, playerManager)
         );
-        //TODO language resourcebundle
+        //TODO resource bundle language
         deck.addCard("SJANSE",
                 "FRI FELT! Flytt til et oransje felt. Hvis den er tilgjengelig, får du den GRATIS! Ellers må du BETALE husleie til eieren.",
                 new MoveFieldGetFreeCard(10,11, gui, game, board, bank) //orange
@@ -81,13 +81,11 @@ public class Cards {
                 new MoveFieldGetFreeCard(1,2, 16, 17, gui, game, board, bank) //brown and yellow
         );
 
-        //TODO language resourcebundle
         deck.addCard("SJANSE",
                 "Flytt opptil 5 felter.",
                 new MoveMaxFiveCard(gui,board, game)
         );
 
-        //TODO language resource bundle
         deck.addCard("SJANSE",
                 "Move or draw",
                 new MoveOrDrawCard(1, gui, board, game)
