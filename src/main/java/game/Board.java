@@ -60,7 +60,7 @@ public class Board {
      * Lets the user enter their names, determines if they are blank or duplicates
      * and saves the names
      * @param currentUser the current user index who may enter their name
-     */ //TODO resource bundle lang
+     */
     private void receiveUserInput(int currentUser) {
         String userInput = gui.getUserString(
                 Main.getLanguage().getString("enterOrdinalName1")
@@ -81,6 +81,7 @@ public class Board {
         }
         playerNames.removeIf(String::isBlank);
     }
+
 
     /**
      * Displays the scoreboard on the GUI
@@ -137,14 +138,14 @@ public class Board {
     /**
      * Shows who the winner is to the users and lets the user exit the game
      * @param winningPlayer the player to be displayed in the messages as the winner
-     */ //TODO resource bundle lang
+     */
     public void displayEndGame(Player winningPlayer) {
-        gui.showMessage("A winner has been found!");
+        gui.showMessage(Main.getLanguage().getString("displayEndGameMessage1"));
         gui.showMessage(winningPlayer.getGUIPlayer().getName()
-                + " has won the game with a total balance of "
+                + Main.getLanguage().getString("displayEndGameMessage2")
                 + winningPlayer.getGUIPlayer().getBalance()
                 + "!");
-        gui.getUserButtonPressed("Press the button to exit", "exit");
+        gui.getUserButtonPressed(Main.getLanguage().getString("displayEndGameMessage3"), Main.getLanguage().getString("displayEndGameMessage4"));
         System.exit(0);
     }
 
