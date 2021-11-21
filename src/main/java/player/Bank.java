@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * //TODO
+ * The Bank class manipulates the players' balances and allows them to buy, receive and pay rent for fields.
+ * It also determines the winning player by their final balance and the amount of value they possess in fields
  */
 public class Bank {
     private final PlayerManager playerManager;
@@ -40,9 +41,9 @@ public class Bank {
     }
 
     /**
-     * //TODO
-     * @param fieldIndex
-     * @param player
+     * Gives the player a field
+     * @param fieldIndex the index of the field to be given to the player
+     * @param player the player to receive the field
      */
     public void receiveField(int fieldIndex, Player player) {
         GUI_Field field = fields.getFields()[fieldIndex];
@@ -71,11 +72,6 @@ public class Bank {
         }
     }
 
-    /**
-     * //TODO
-     * @param player
-     * @return
-     */
     private boolean hasLost(Player player) {
         int playerBalance = player.getGUIPlayer().getBalance();
         if(playerBalance <= 0) {
@@ -85,7 +81,7 @@ public class Bank {
     }
 
     /**
-     * //TODO
+     * Sells
      * @param playerIndex
      */
     private void sellAllFields(int playerIndex) {
