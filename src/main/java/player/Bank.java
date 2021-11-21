@@ -80,10 +80,8 @@ public class Bank {
         int playerBalance = player.getGUIPlayer().getBalance();
         if(playerBalance <= 0) {
             player.getGUIPlayer().setBalance(0);
-
-            return true;
         }
-        return false;
+        return (playerBalance <= 0);
     }
 
     /**
