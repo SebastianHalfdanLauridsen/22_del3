@@ -24,7 +24,7 @@ public class BoardTest {
 
         board.displayStartUI();
 
-        ArrayList<String> names = board.getPlayerNames();
+        List<String> names = board.getPlayerNames();
         //isDuplicate() test
         //thanks to https://stackoverflow.com/a/50540360 (BIG BRAIN)
         //the size of the original list must be the same as the size of the list with only distinct values
