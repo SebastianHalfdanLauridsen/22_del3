@@ -106,8 +106,7 @@ public class Fields {
                         Color.BLACK),
 
                 //GRATIS PARKERING
-                new GUI_Brewery("",
-                        Main.getLanguage().getString("parkingTitleAndDescription"),
+                new GUI_Start(Main.getLanguage().getString("parkingTitleAndDescription"),
                         Main.getLanguage().getString("parkingSubText"),
                         Main.getLanguage().getString("parkingTitleAndDescription"),
                         new Color(229, 239,222),
