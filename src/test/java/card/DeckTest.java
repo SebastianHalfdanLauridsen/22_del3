@@ -26,7 +26,6 @@ public class DeckTest {
         Main.setLanguage();
         Deck deck = new Deck();
 
-        //variables
         String name1 = "card1";
         String desc1 = "description1";
 
@@ -36,16 +35,15 @@ public class DeckTest {
         String name3 = "card3";
         String desc3 = "description3";
 
-        //add cards to deck
         GUI gui = new GUI();
         Board board = new Board(gui);
-        Bank bank = new Bank(new PlayerManager(), board, new Fields());
-        //TODO
-        //deck.addCard(name1, desc1, new MoveCard(23, board, game));
+        PlayerManager playerManager = new PlayerManager();
+        Bank bank = new Bank(playerManager, board, new Fields());
+
+        deck.addCard(name1,desc1, new GetPlayersMoneyCard(1, bank, playerManager));
         deck.addCard(name2, desc2, new PayBankCard(2, bank));
         deck.addCard(name3, desc3, new GetBankMoneyCard(2, bank));
 
-        //test
         AbstractCard card = deck.drawCard();
         Assert.assertEquals(name1, card.getName());
         Assert.assertEquals(desc1, card.getDescription());
@@ -65,11 +63,10 @@ public class DeckTest {
         Deck deck = new Deck();
 
         GUI gui = new GUI();
-        Bank bank = new Bank(new PlayerManager(), new Board(gui), new Fields());
+        PlayerManager playerManager = new PlayerManager();
+        Bank bank = new Bank(playerManager, new Board(gui), new Fields());
 
-        //add cards to deck
-        //TODO
-        //deck.addCard("card", "description", new MoveCard(23));
+        deck.addCard("card","description", new GetPlayersMoneyCard(1, bank, playerManager));
         deck.addCard("card", "description", new PayBankCard(2, bank));
         deck.addCard("card", "description", new GetBankMoneyCard(2, bank));
 
