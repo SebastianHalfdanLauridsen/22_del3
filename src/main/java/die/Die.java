@@ -13,7 +13,11 @@ public class Die {
     private int face;
     private int sides = 0;
 
-
+    /**
+     * //TODO
+     * @param face
+     * @param sides
+     */
     protected Die(int face, int sides) {
         if(face < 1 || face > sides) {
             logr.log(Level.INFO, "The die's face value cannot be less than 1 " +
