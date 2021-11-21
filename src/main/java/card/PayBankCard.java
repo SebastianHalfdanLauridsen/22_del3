@@ -3,7 +3,7 @@ import player.Bank;
 import player.Player;
 
 /**
- * //TODO
+ * Makes the player pay a given amount to the bank.
  */
 public class PayBankCard extends AbstractCard{
     int payAmount;
