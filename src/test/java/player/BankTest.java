@@ -15,9 +15,7 @@ import java.util.ArrayList;
 
 public class BankTest {
 
-
-    //Test om balance bliver skiftet
-    @Test //TODO test determineWinningPlayer and hasLost methods via this class
+    @Test
     public void determineWinningPlayerTest() {
         Main.setLanguage();
         determineWinningPlayerTest1();
