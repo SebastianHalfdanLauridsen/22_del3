@@ -2,9 +2,11 @@ package game;
 
 import gui_fields.*;
 
-
 import java.awt.Color;
 
+/**
+ * Creates all the fields
+ */
 public class Fields {
 
     private GUI_Field[] fields;
@@ -14,8 +16,8 @@ public class Fields {
     }
 
     /**
-     *
-     *///TODO needs resourcebundle language overhaul
+     * Creates all the fields necessary to begin the GUI
+     */
     private void createFields() {
         fields = new GUI_Field[] {
                 //START MOTTA M2 NÅR DU PASSERER
@@ -108,7 +110,6 @@ public class Fields {
                         Main.getLanguage().getString("parkingTitleAndDescription"),
                         Main.getLanguage().getString("parkingSubText"),
                         Main.getLanguage().getString("parkingTitleAndDescription"),
-                        "",
                         new Color(229, 239,222),
                         Color.BLACK),
 
