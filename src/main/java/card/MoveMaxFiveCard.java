@@ -1,6 +1,7 @@
 package card;
 import game.Board;
 import game.Game;
+import game.Main;
 import gui_main.GUI;
 import player.Player;
 
@@ -19,9 +20,9 @@ public class MoveMaxFiveCard extends AbstractCard{
     }
 
     //Lets the player move 1 to 5 fields depending on the number input
-    public void action(Player player) { //TODO language bundle
+    public void action(Player player) {
         String chosenElement = gui.getUserSelection(
-                "Choose how many field you want to move!",
+                Main.getLanguage().getString("moveMaxFiveMessage"),
                 "1", "2", "3", "4", "5"
         );
 
