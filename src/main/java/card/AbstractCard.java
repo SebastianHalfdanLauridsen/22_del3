@@ -27,6 +27,9 @@ public abstract class AbstractCard {
         return description;
     }
 
+    /**
+     * The mutual action which all subclasses must include. This is the action of the subclass card.
+     * @param player the player whomst'd've'lu'yaint'nt'ed'ies's'y'es'nt't're'ing'able'tic'ive'al'nt'ne'm'll'ble'al'ny draws the card and is mainly acted upon.
+     */
     public abstract void action(Player player);
-
 }
