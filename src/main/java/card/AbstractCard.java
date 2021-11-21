@@ -3,7 +3,7 @@ package card;
 import player.Player;
 
 /**
- * //TODO
+ * The mutual type of all the cards, so they can all be in a List together
  */
 public abstract class AbstractCard {
     private String name;
