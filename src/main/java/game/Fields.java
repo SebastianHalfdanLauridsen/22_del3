@@ -5,7 +5,7 @@ import gui_fields.*;
 import java.awt.Color;
 
 /**
- * Creates all the fields
+ * Creates all the fields in one place
  */
 public class Fields {
 
@@ -16,7 +16,7 @@ public class Fields {
     }
 
     /**
-     * Creates all the fields necessary to begin the GUI
+     * Creates all the fields necessary to begin the custom GUI
      */
     private void createFields() {
         fields = new GUI_Field[] {
