@@ -9,7 +9,6 @@ public class GetBankMoneyCard extends AbstractCard{
     int paymentAmount;
     private final Bank bank;
 
-
     public GetBankMoneyCard(int paymentAmount, Bank bank) {
         this.paymentAmount = paymentAmount;
         this.bank = bank;
