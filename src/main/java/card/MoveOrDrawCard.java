@@ -1,6 +1,7 @@
 package card;
 import game.Board;
 import game.Game;
+import game.Main;
 import gui_main.GUI;
 import player.Player;
 
@@ -21,11 +22,10 @@ public class MoveOrDrawCard extends AbstractCard{
     }
 
     public void action(Player player) {
-        //TODO language resource bundle
-        String choice1 = "Move " + moves +  " field(s)";
-        String choice2 = "Draw a card";
+        String choice1 = Main.getLanguage().getString("moveOrDrawMessage1") + moves +  Main.getLanguage().getString("moveOrDrawMessage2");
+        String choice2 = Main.getLanguage().getString("moveOrDrawMessage3");
         String chosenElement = gui.getUserSelection(
-                "Move" + moves + " field(s) or draw a card!",
+                Main.getLanguage().getString("moveOrDrawMessage1") + moves + Main.getLanguage().getString("moveOrDrawMessage4"),
                 choice1, choice2
         );
 
