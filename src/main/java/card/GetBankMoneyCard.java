@@ -3,7 +3,7 @@ import player.Bank;
 import player.Player;
 
 /**
- * //TODO
+ * A chance card which pays the player a given amount of money from the bank
  */
 public class GetBankMoneyCard extends AbstractCard{
     int paymentAmount;
