@@ -5,12 +5,10 @@ import java.util.List;
 import die.Die;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
-import gui_fields.GUI_Street;
 import gui_main.GUI;
 
 import org.junit.Assert;
 import org.junit.Test;
-import player.Bank;
 import player.Player;
 import player.PlayerManager;
 
