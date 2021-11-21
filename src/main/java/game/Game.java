@@ -13,6 +13,9 @@ import player.PlayerManager;
 import java.awt.Color;
 import java.util.logging.Level;
 
+/**
+ * //TODO
+ */
 public class Game {
     private final GUI gui;
     private final Board board;
@@ -73,6 +76,7 @@ public class Game {
      *   and runs the rounds until a player has won and displays the end game info after
      */
     public void runGame() {
+
         playerSetup();
         board.displayScoreboard(playerManager);
         cardSetup();
@@ -98,7 +102,6 @@ public class Game {
                 continue;
             }
             currentPlayer.setJailCard(false);
-
             playTurn(currentPlayer);
         }
     }
@@ -152,7 +155,7 @@ public class Game {
         try {
             description = card.getDescription();
         } catch (NullPointerException e){
-            Main.getLogr().log(Level.INFO, "Card that was drawn was null");
+            Main.getLogger().log(Level.INFO, "Card that was drawn was null");
             e.getStackTrace();
             System.exit(-1);
         }
