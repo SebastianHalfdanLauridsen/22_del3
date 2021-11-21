@@ -71,7 +71,6 @@ public class Board {
             gui.showMessage(Main.getLanguage().getString("inputIsBlank"));
             receiveUserInput(currentUser);
         }
-
         playerNames.add(userInput);
 
         if (currentUser > 0 && isDuplicateName(userInput)) {
@@ -97,10 +96,10 @@ public class Board {
     }
 
     /**
-     *
-     * @param player
-     * @param moves
-     * @param currentFieldIndex
+     * Displays the player's car hopping from field to field until they land on the final field
+     * @param player the player to move
+     * @param moves the amount of moves the player moves
+     * @param currentFieldIndex the current field the player is on
      */
     public void displayMovingPlayer(GUI_Player player, int moves, int currentFieldIndex){
         for (int nextFieldIndex = currentFieldIndex; nextFieldIndex <= currentFieldIndex+moves; nextFieldIndex++) {
@@ -119,9 +118,9 @@ public class Board {
     }
 
     /**
-     * Removes all images of the player's car on every field and displays the car on the newFieldIndex
+     * Instantly displays the player's car on the new field index and removes the old car from the old field
      * @param player the player to move
-     * @param newFieldIndex
+     * @param newFieldIndex the new field the player must be at
      */
     public void displayInstantMovingPlayer(GUI_Player player, int newFieldIndex) {
         //removes all images of 'player's car from all fields
@@ -151,7 +150,7 @@ public class Board {
 
     /**
      * Displays a border with the player's color around the field
-     * if it is a field of type GUI_Ownable
+     *   if it is a field of type GUI_Ownable
      */
     public void displayBoughtField(Player player, GUI_Field field) {
         if(field instanceof GUI_Ownable o) {
