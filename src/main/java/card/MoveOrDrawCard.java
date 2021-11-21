@@ -6,7 +6,7 @@ import gui_main.GUI;
 import player.Player;
 
 /**
- * //TODO
+ * Allows the player to move a given amount or draw a card
  */
 public class MoveOrDrawCard extends AbstractCard{
     int moves;
