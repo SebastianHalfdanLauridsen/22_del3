@@ -9,10 +9,11 @@ import player.PlayerManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-//TODO javacock
 /**
- * displaysshit
+ * The board class is mainly responsible for displaying various visual elements
+ *   mainly through the GUI
  */
 public class Board {
     private final ArrayList<String> playerNames = new ArrayList<>();
@@ -29,6 +30,11 @@ public class Board {
         this.gui = gui;
     }
 
+    /**
+     * Determines if the name has already been entered in playerNames
+     * @param name the name to be compared to playerNames
+     * @return true if a duplicate
+     */
     private boolean isDuplicateName(String name) {
         for (int index = 0; index < playerNames.size() - 1; index++) {
             if (name.equalsIgnoreCase(playerNames.get(index))) {
@@ -39,7 +45,7 @@ public class Board {
     }
 
     /**
-     * //TODO
+     * Lets the user enter the amount of players and their names
      */
     public void displayStartUI() {
         gui.showMessage(Main.getLanguage().getString("welcomeMessage"));
@@ -50,6 +56,11 @@ public class Board {
         }
     }
 
+    /**
+     * Lets the user enter their names, determines if they are blank or duplicates
+     * and saves the names
+     * @param currentUser the current user index who may enter their name
+     */ //TODO resource bundle lang
     private void receiveUserInput(int currentUser) {
         String userInput = gui.getUserString(
                 Main.getLanguage().getString("enterOrdinalName1")
@@ -68,7 +79,6 @@ public class Board {
             playerNames.remove(currentUser);
             receiveUserInput(currentUser);
         }
-        //remove all blank entries
         playerNames.removeIf(String::isBlank);
     }
 
@@ -81,14 +91,16 @@ public class Board {
         }
     }
 
-    public void displayChanceCard() {
-        // TODO
-    }
-
     public void displayCar(GUI_Player player, GUI_Field field) {
         field.setCar(player, true);
     }
 
+    /**
+     *
+     * @param player
+     * @param moves
+     * @param currentFieldIndex
+     */
     public void displayMovingPlayer(GUI_Player player, int moves, int currentFieldIndex){
         for (int nextFieldIndex = currentFieldIndex; nextFieldIndex <= currentFieldIndex+moves; nextFieldIndex++) {
             Game.sleep(400);
@@ -105,6 +117,11 @@ public class Board {
         }
     }
 
+    /**
+     * Removes all images of the player's car on every field and displays the car on the newFieldIndex
+     * @param player the player to move
+     * @param newFieldIndex
+     */
     public void displayInstantMovingPlayer(GUI_Player player, int newFieldIndex) {
         //removes all images of 'player's car from all fields
         for (GUI_Field f : gui.getFields()) {
@@ -117,6 +134,10 @@ public class Board {
         gui.setDie(face);
     }
 
+    /**
+     * Shows who the winner is to the users and lets the user exit the game
+     * @param winningPlayer the player to be displayed in the messages as the winner
+     */ //TODO resource bundle lang
     public void displayEndGame(Player winningPlayer) {
         gui.showMessage("A winner has been found!");
         gui.showMessage(winningPlayer.getGUIPlayer().getName()
@@ -128,7 +149,8 @@ public class Board {
     }
 
     /**
-     * //TODO
+     * Displays a border with the player's color around the field
+     * if it is a field of type GUI_Ownable
      */
     public void displayBoughtField(Player player, GUI_Field field) {
         if(field instanceof GUI_Ownable o) {
@@ -143,7 +165,7 @@ public class Board {
         return playerNames.get(index);
     }
 
-    public ArrayList<String> getPlayerNames() {
+    public List<String> getPlayerNames() {
         return playerNames;
     }
 
