@@ -190,9 +190,7 @@ public class Game {
                 System.out.println("GUI_Street!");
                 GUIStreetAction(player, fieldIndex);
             }
-            case "GUI_Chance" -> {
-                GUIChanceAction(player);
-            }
+            case "GUI_Chance" -> GUIChanceAction(player);
             case "GUI_Tax" -> {
                 System.out.println(player.getGUIPlayer().getName() + " went to jail");
                 Game.sleep();
