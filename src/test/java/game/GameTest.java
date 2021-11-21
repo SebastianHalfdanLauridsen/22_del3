@@ -151,7 +151,6 @@ public class GameTest {
         deck.addCard("name", "desc", new GetBankMoneyCard(payment, bank));
         board.displayScoreboard(playerManager);
 
-        //TODO MAYBE MOVE TO METHODS :D
         //test buy field
         expected = startBalance - Integer.parseInt( ( (GUI_Street) (gui.getFields()[1]) ).getRent() );
         fieldActionTestMover(1, player);
