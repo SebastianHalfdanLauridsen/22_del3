@@ -8,7 +8,7 @@ import player.Bank;
 import player.PlayerManager;
 
 /**
- * //TODO
+ * The cards class creates all the cards in on place and adds them to the deck.
  */
 public record Cards(Deck deck, Board board, Bank bank, PlayerManager playerManager,
                     GUI gui, Game game) {
@@ -23,7 +23,7 @@ public record Cards(Deck deck, Board board, Bank bank, PlayerManager playerManag
     }
 
     /**
-     * //TODO
+     * Creates all the cards and adds them to the Deck
      */
     private void createCards() {
 
