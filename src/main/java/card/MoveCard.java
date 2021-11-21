@@ -5,7 +5,7 @@ import game.Game;
 import player.Player;
 
 /**
- * //TODO
+ * Moves the player to a given field and activates the action of the field
  */
 public class MoveCard extends AbstractCard{
     private final int fieldIndex;
