@@ -8,7 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * //TODO
+ * The Player class represents the player with their counterpart GUI_Player, field position,
+ *   list of owned fields and whether they have a jail card or are in jail
  */
 public class Player {
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -38,8 +39,8 @@ public class Player {
     }
 
     /**
-     * //TODO
-     * @param fieldPosition
+     * Sets the field position of the player if it is valid
+     * @param fieldPosition the field position the player must be moved to
      */
     public void setFieldPosition(int fieldPosition) {
         if(fieldPosition < 0 || fieldPosition > Game.MAX_FIELDS) {
