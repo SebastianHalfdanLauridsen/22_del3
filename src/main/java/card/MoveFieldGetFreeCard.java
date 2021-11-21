@@ -12,8 +12,6 @@ import java.util.Arrays;
  * //TODO
  */
 public class MoveFieldGetFreeCard extends AbstractCard {
-
-    //Declares the two fields with the same color
     private final int[] field;
     private final GUI gui;
     private final Game game;
@@ -39,7 +37,6 @@ public class MoveFieldGetFreeCard extends AbstractCard {
         this.bank = bank;
     }
 
-    //action() moves the player to the chosen field which depends on the given action card
     public void action(Player player) {
         String chosenElement;
         //Choice array filler
@@ -47,7 +44,7 @@ public class MoveFieldGetFreeCard extends AbstractCard {
             choice[i] = gui.getFields()[field[i]].getTitle();
         }
 
-        chosenElement = gui.getUserSelection(
+        chosenElement = gui.getUserSelection( //TODO language bundle
                 "Choose which of the two free fields you wanna stay on!",
                 choice
         );
@@ -57,7 +54,7 @@ public class MoveFieldGetFreeCard extends AbstractCard {
 
         game.movePlayer(player, chosenField);
         board.displayInstantMovingPlayer(player.getGUIPlayer(), chosenField);
-        //the player receives the field or pays rent to the owner
+        //the player receives the field, or pays rent to the owner via GUIStreetAction
         if (bank.isOwned(chosenField) == null) {
             bank.receiveField(chosenField, player);
         } else {
