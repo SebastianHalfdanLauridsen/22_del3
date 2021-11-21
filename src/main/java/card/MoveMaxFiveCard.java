@@ -6,7 +6,7 @@ import gui_main.GUI;
 import player.Player;
 
 /**
- * //TODO
+ * Allows the player to move between 1 and 5 via a dropdown list and performs the action of the field
  */
 public class MoveMaxFiveCard extends AbstractCard{
     private final GUI gui;
