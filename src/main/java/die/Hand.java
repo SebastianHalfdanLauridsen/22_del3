@@ -1,7 +1,6 @@
 package die;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,11 +8,16 @@ import java.util.logging.Logger;
  * //TODO
  */
 public class Hand {
-
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private final int diesCount;
     private final ArrayList<Die> dice;
 
+    /**
+     *
+     * @param dice
+     * @param sides
+     * @throws NumberFormatException
+     */
     public Hand(int dice, int sides) throws NumberFormatException{
         if(dice < 1 || sides < 1) {
             logr.log(Level.INFO, "Hand constructor arguments cannot be less than 1.");
