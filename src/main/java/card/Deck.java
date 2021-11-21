@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 /**
- * //TODO
+ * The deck holds all the cards in the game and can shuffle and draw them
  */
 public class Deck {
     int cardCount;
@@ -16,10 +16,10 @@ public class Deck {
     }
 
     /**
-     *
-     * @param name
-     * @param description
-     * @param card
+     * Adds an AbstractCard with a name and description to the cards LinkedList and adds 1 to the card counter
+     * @param name the name of the card
+     * @param description the description of the card, usually a description of its action
+     * @param card the type of card, a subclass of AbstractCard
      */
     public void addCard(String name, String description, AbstractCard card) {
         card.setName(name).setDescription(description);
@@ -28,8 +28,8 @@ public class Deck {
     }
 
     /**
-     *
-     * @return
+     * Draws the topmost card in the deck and adds it to the bottom of the deck.
+     * @return the card that is drawn
      */
     public AbstractCard drawCard() {
         AbstractCard card = cards.poll();
@@ -37,6 +37,9 @@ public class Deck {
         return card;
     }
 
+    /**
+     * Shuffles the cards like a real deck of cards, via java.util.Collections
+     */
     public void shuffleCards() {
         Collections.shuffle(cards);
     }
