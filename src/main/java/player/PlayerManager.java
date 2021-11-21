@@ -7,7 +7,8 @@ import gui_fields.GUI_Player;
 import game.Game;
 
 /**
- * //TODO
+ * The PlayerManager holds all the players and can create the players in itself
+ *   and in the GUI at the same time.
  */
 public class PlayerManager {
 
@@ -19,7 +20,6 @@ public class PlayerManager {
         this.playerCount = 0;
     }
 
-    //TODO javadoc
     /**
      * Create players and add to GUI and private array
      */
