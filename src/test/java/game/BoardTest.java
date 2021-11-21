@@ -5,22 +5,33 @@ import java.util.List;
 import die.Die;
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Field;
+import gui_fields.GUI_Street;
 import gui_main.GUI;
 
 import org.junit.Assert;
 import org.junit.Test;
+import player.Bank;
 import player.Player;
 import player.PlayerManager;
 
 public class BoardTest {
+    Fields fields;
+    GUI gui;
+    Board board;
+    PlayerManager playerManager;
+
+    private void setup(){
+        Main.setLanguage();
+        fields = new Fields();
+        gui = new GUI(fields.getFields());
+        board = new Board(gui);
+        playerManager = new PlayerManager();
+
+    }
 
     @Test
     public void displayStartUITest() {
-        Main.setLanguage();
-
-        Fields fields = new Fields();
-        GUI gui = new GUI(fields.getFields());
-        Board board = new Board(gui);
+        setup();
 
         board.displayStartUI();
 
@@ -38,12 +49,7 @@ public class BoardTest {
 
     @Test
     public void displayScoreboardTest() {
-        Main.setLanguage();
-
-        Fields fields = new Fields();
-        GUI gui = new GUI(fields.getFields());
-        Board board = new Board(gui);
-        PlayerManager playerManager = new PlayerManager();
+        setup();
 
         playerManager.createPlayer("Kevse", 10, new GUI_Car());
         playerManager.createPlayer("Sbebastian", 15, new GUI_Car());
@@ -56,12 +62,7 @@ public class BoardTest {
 
     @Test
     public void displayCarTest() {
-        Main.setLanguage();
-
-        Fields fields = new Fields();
-        GUI gui = new GUI(fields.getFields());
-        Board board = new Board(gui);
-        PlayerManager playerManager = new PlayerManager();
+        setup();
 
         playerManager.createPlayer("Kevse", 10, new GUI_Car());
         Player player = playerManager.getPlayers(0);
@@ -76,11 +77,7 @@ public class BoardTest {
 
     @Test
     public void displayMovingPlayerTest() {
-        Main.setLanguage();
-
-        GUI gui = new GUI(new Fields().getFields());
-        Board board = new Board(gui);
-        PlayerManager playerManager = new PlayerManager();
+        setup();
 
         playerManager.createPlayer("Kevse", 10, new GUI_Car());
         Player player = playerManager.getPlayers(0);
@@ -93,11 +90,7 @@ public class BoardTest {
 
     @Test
     public void displayInstantMovingPlayerTest() {
-        Main.setLanguage();
-
-        GUI gui = new GUI(new Fields().getFields());
-        Board board = new Board(gui);
-        PlayerManager playerManager = new PlayerManager();
+        setup();
 
         playerManager.createPlayer("Kevse", 10, new GUI_Car());
         Player player = playerManager.getPlayers(0);
@@ -114,10 +107,7 @@ public class BoardTest {
 
     @Test
     public void displayDieTest() {
-        Main.setLanguage();
-
-        GUI gui = new GUI(new Fields().getFields());
-        Board board = new Board(gui);
+        setup();
 
         for (int i = 0; i < 100; i++) {
             Game.sleep(75);
@@ -128,11 +118,7 @@ public class BoardTest {
 
     @Test
     public void displayEndGameTest() {
-        Main.setLanguage();
-
-        GUI gui = new GUI(new Fields().getFields());
-        PlayerManager playerManager = new PlayerManager();
-        Board board = new Board(gui);
+        setup();
 
         playerManager.createPlayer("name",10,new GUI_Car());
         board.displayEndGame(playerManager.getPlayers(0));
@@ -140,6 +126,18 @@ public class BoardTest {
 
     @Test
     public void displayBoughtFieldTest() {
+        setup();
 
+        playerManager.createPlayer("Kevse", 10, new GUI_Car());
+        Player player = playerManager.getPlayers(0);
+
+        Game.sleep(1000);
+        GUI_Field[] field = gui.getFields();
+        for(GUI_Field f : field) {
+            Game.sleep(75);
+            board.displayBoughtField(player,f);
+        }
+
+        Game.sleep(5000);
     }
 }
