@@ -4,7 +4,7 @@ import player.Player;
 import player.PlayerManager;
 
 /**
- * //TODO
+ * Gives the player a given amount of money from all the other players in the game
  */
 public class GetPlayersMoneyCard extends AbstractCard {
     int payAmount;
