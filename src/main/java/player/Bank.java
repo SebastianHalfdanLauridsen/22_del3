@@ -81,8 +81,8 @@ public class Bank {
     }
 
     /**
-     * Sells
-     * @param playerIndex
+     * Sells all the fields for the player
+     * @param playerIndex the player whose fields are being sold
      */
     private void sellAllFields(int playerIndex) {
         //"sell" all owned fields to bank
