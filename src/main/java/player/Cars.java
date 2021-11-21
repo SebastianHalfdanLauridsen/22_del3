@@ -5,7 +5,7 @@ import gui_fields.GUI_Car;
 import java.awt.Color;
 
 /**
- * //TODO
+ * Creates all the cars in one place
  */
 public class Cars {
     private GUI_Car[] cars;
@@ -14,6 +14,9 @@ public class Cars {
         createCars();
     }
 
+    /**
+     * Creates all the cars necessary to begin play the game
+     */
     private void createCars() {
         cars = new GUI_Car[]{
                 //the car (bilen)
