@@ -5,7 +5,8 @@ import java.util.logging.Logger;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * //TODO
+ * The die class represents a die with a given amount of sides
+ *   and a method for rolling the die and getting a face value
  */
 public class Die {
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -13,11 +14,6 @@ public class Die {
     private int face;
     private int sides = 0;
 
-    /**
-     * //TODO
-     * @param face
-     * @param sides
-     */
     protected Die(int face, int sides) {
         if(face < 1 || face > sides) {
             logr.log(Level.INFO, "The die's face value cannot be less than 1 " +
@@ -38,7 +34,7 @@ public class Die {
     }
 
     public Die() {
-        this.sides = 6; //TODO GLOBAL VARIABLE WITH SIDES
+        this.sides = 6;
         roll();
     }
 
