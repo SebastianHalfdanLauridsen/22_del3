@@ -28,6 +28,9 @@ public class Cards {
         createCards();
     }
 
+    /**
+     * //TODO
+     */
     private void createCards() {
 
         deck.addCard(Main.getLanguage().getString("cardName"),
