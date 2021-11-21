@@ -1,6 +1,7 @@
 package card;
 
 import game.Board;
+import game.Main;
 import gui_main.GUI;
 import player.Bank;
 import player.Player;
@@ -44,8 +45,8 @@ public class MoveFieldGetFreeCard extends AbstractCard {
             choice[i] = gui.getFields()[field[i]].getTitle();
         }
 
-        chosenElement = gui.getUserSelection( //TODO language bundle
-                "Choose which of the two free fields you wanna stay on!",
+        chosenElement = gui.getUserSelection(
+                Main.getLanguage().getString("moveFieldGetFreeMessage"),
                 choice
         );
 
