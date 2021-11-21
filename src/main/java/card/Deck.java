@@ -15,12 +15,22 @@ public class Deck {
         cardCount = 0;
     }
 
+    /**
+     *
+     * @param name
+     * @param description
+     * @param card
+     */
     public void addCard(String name, String description, AbstractCard card) {
         card.setName(name).setDescription(description);
         cards.add(card);
         cardCount++;
     }
 
+    /**
+     *
+     * @return
+     */
     public AbstractCard drawCard() {
         AbstractCard card = cards.poll();
         cards.addLast(card);
