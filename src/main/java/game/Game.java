@@ -149,8 +149,6 @@ public class Game {
      * @param player the player who draws a chance card and is affected by its actions
      */
     public void GUIChanceAction(Player player) {
-        System.out.println("GUI_Chance!");
-
         AbstractCard card = deck.drawCard();
         String description = "";
         try {
@@ -160,8 +158,6 @@ public class Game {
             e.getStackTrace();
             System.exit(-1);
         }
-        System.out.println("Player " + player.getGUIPlayer().getName() + " drew chancecard" + "\n\""+ description + "\"");
-
         gui.displayChanceCard(description);
         Game.sleep();
         card.action(player);

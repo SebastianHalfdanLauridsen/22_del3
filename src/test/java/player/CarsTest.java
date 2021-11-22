@@ -15,7 +15,6 @@ public class CarsTest {
     Board board;
     PlayerManager playerManager;
 
-
     @Test
     public void carsTest() {
         setup();
