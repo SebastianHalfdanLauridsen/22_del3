@@ -182,13 +182,9 @@ public class Game {
     public void fieldAction(Player player, int fieldIndex) {
         String fieldType = fields.getFields()[fieldIndex].getClass().getSimpleName();
         switch (fieldType) {
-            case "GUI_Street" -> {
-                System.out.println("GUI_Street!");
-                GUIStreetAction(player, fieldIndex);
-            }
+            case "GUI_Street" -> GUIStreetAction(player, fieldIndex);
             case "GUI_Chance" -> GUIChanceAction(player);
             case "GUI_Tax" -> {
-                System.out.println(player.getGUIPlayer().getName() + " went to jail");
                 Game.sleep();
                 GUIGoToJailAction(player);
             }
@@ -197,7 +193,7 @@ public class Game {
 
     /**
      * Moves the player to a field in the backend and pays the player if they pass start
-     * @param player the player to move field or get payed
+     * @param player the player to move field or get paid
      * @param fieldIndex the field
      */
     public void movePlayer(Player player, int fieldIndex) {
