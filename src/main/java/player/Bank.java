@@ -123,11 +123,9 @@ public class Bank {
     public void changeBalance(Player player, int change) {
         int currentBalance = player.getGUIPlayer().getBalance();
         player.getGUIPlayer().setBalance(currentBalance + change);
-
         if(hasLost(player)) {
             determineWinningPlayer();
         }
-        System.out.println(player.getGUIPlayer().getName() + " balance changed by " + change);
     }
 
     /**

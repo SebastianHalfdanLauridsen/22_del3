@@ -26,7 +26,6 @@ public record Cards(Deck deck, Board board, Bank bank, PlayerManager playerManag
      * Creates all the cards and adds them to the Deck
      */
     private void createCards() {
-
         deck.addCard(Main.getLanguage().getString("cardName"),
                 Main.getLanguage().getString("cardDescription1"),
                 new MoveCard(23, board, game) //strandpromenaden
@@ -93,5 +92,10 @@ public record Cards(Deck deck, Board board, Bank bank, PlayerManager playerManag
         deck.addCard(Main.getLanguage().getString("cardName"),
                 Main.getLanguage().getString("cardDescription15"),
                 new GetOutOfJailCard());
+
+        deck.addCard(Main.getLanguage().getString("cardName"),
+                Main.getLanguage().getString("cardDescription16"),
+                new MoveFieldGetFreeCard(10, gui, game, board, bank)
+        );
     }
 }

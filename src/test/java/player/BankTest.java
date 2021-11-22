@@ -11,8 +11,6 @@ import gui_main.GUI;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 public class BankTest {
 
     @Test
@@ -39,7 +37,6 @@ public class BankTest {
         board.displayScoreboard(playerManager);
 
         //Gives all, except 1, GUIStreetFields to player 2
-        ArrayList<GUI_Street> GUIStreetFields = new ArrayList<>();
         for (int i = 0; i < 23; i++){
             GUI_Field field = fields.getFields()[i];
             if (field instanceof GUI_Street) {
