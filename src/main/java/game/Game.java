@@ -17,6 +17,8 @@ import java.util.logging.Level;
  * Runs Monopoly Junior and all of its main functions
  */
 public class Game {
+    public static boolean gameRunning = false;
+
     private final GUI gui;
     private final Board board;
     private final PlayerManager playerManager;
@@ -34,6 +36,7 @@ public class Game {
     public static final int MAX_PLAYER = 4;
 
     public Game() {
+        gameRunning = true;
         this.fields = new Fields();
         this.cars = new Cars();
         this.playerManager = new PlayerManager();
