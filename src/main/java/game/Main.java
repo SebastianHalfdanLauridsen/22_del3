@@ -11,12 +11,20 @@ public class Main {
     private static final Logger logr = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private static ResourceBundle language;
 
-    public static void main(String[] args) {
-        Main.setupLogger();
-        selectLanguage();
+    public static boolean runGame = false;
 
-        Game game = new Game();
-        game.runGame();
+    public static void main(String[] args) throws InterruptedException {
+        new LanguagePane();
+
+        Main.setupLogger();
+
+        while (!Game.gameRunning) {
+            if(runGame) {
+                Game game = new Game();
+                game.runGame();
+            }
+            Game.sleep();
+        }
     }
 
     /**
