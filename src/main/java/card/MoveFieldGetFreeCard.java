@@ -23,7 +23,7 @@ public class MoveFieldGetFreeCard extends AbstractCard {
 
     public MoveFieldGetFreeCard(int field1, GUI gui, Game game, Board board, Bank bank) {
         this.field = new int[]{field1};
-        this.choice = new String[2];
+        this.choice = new String[1];
         this.gui = gui;
         this.game = game;
         this.board = board;
